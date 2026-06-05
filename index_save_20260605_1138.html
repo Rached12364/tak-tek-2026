@@ -596,186 +596,9 @@
 
     ::-webkit-scrollbar-thumb { background: #252525; border-radius: 2px; }
 
-  .btn-icon{animation:spin 8s linear infinite;}
+  </style>
 
-@keyframes tn-fadein {
-  from { opacity:0; transform:translateX(40px); }
-  to   { opacity:1; transform:translateX(0); }
-}
-@keyframes tn-pulse-red {
-  0%,100% { box-shadow: 0 0 0px #E70013; }
-  50%      { box-shadow: 0 0 18px #E70013, 0 0 40px rgba(231,0,19,0.3); }
-}
-@keyframes tn-slot-glow {
-  0%,100% { box-shadow: none; }
-  50%      { box-shadow: 0 0 12px #E70013; }
-}
-.tn-card {
-  animation: tn-fadein 0.4s ease both;
-}
-.tn-card:nth-child(3) { animation-delay: 0.05s; }
-.tn-card:nth-child(4) { animation-delay: 0.12s; }
-.tn-card:nth-child(5) { animation-delay: 0.20s; }
-.tn-card-selected {
-  animation: tn-pulse-red 1.8s ease infinite !important;
-  border-color: #E70013 !important;
-}
-.tn-slot-active {
-  animation: tn-slot-glow 1.5s ease infinite;
-}
-</style>
-
-<style>
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-@keyframes glow-gold {
-  0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.3); }
-  50% { text-shadow: 0 0 40px rgba(255,215,0,0.9), 0 0 80px rgba(255,215,0,0.4); }
-}
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-@keyframes pulse-border-gold {
-  0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,0.2), inset 0 0 10px rgba(255,215,0,0.05); }
-  50% { box-shadow: 0 0 30px rgba(255,215,0,0.5), inset 0 0 20px rgba(255,215,0,0.1); }
-}
-@keyframes pulse-border-green {
-  0%, 100% { box-shadow: 0 0 10px rgba(0,255,136,0.2), inset 0 0 10px rgba(0,255,136,0.05); }
-  50% { box-shadow: 0 0 30px rgba(0,255,136,0.5), inset 0 0 20px rgba(0,255,136,0.1); }
-}
-@keyframes pulse-border-red {
-  0%, 100% { box-shadow: 0 0 10px rgba(231,0,19,0.2), inset 0 0 10px rgba(231,0,19,0.05); }
-  50% { box-shadow: 0 0 30px rgba(231,0,19,0.5), inset 0 0 20px rgba(231,0,19,0.1); }
-}
-@keyframes spin3d {
-  0% { transform: rotateY(0deg) scale(1); }
-  50% { transform: rotateY(180deg) scale(1.1); }
-  100% { transform: rotateY(360deg) scale(1); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes particles {
-  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
-}
-/* Title animation */
-#page-home h1 {
-  animation: float 3s ease-in-out infinite, glow-gold 2.5s ease-in-out infinite !important;
-  background: linear-gradient(90deg, #FFD700, #fff, #FFD700, #FFA500, #FFD700);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: float 3s ease-in-out infinite, shimmer 3s linear infinite !important;
-}
-/* Cards entrance animation */
-.home-btn {
-  animation: fadeInUp 0.6s ease both;
-}
-.home-btn:nth-child(1) { animation-delay: 0.1s; }
-.home-btn:nth-child(2) { animation-delay: 0.25s; }
-.home-btn:nth-child(3) { animation-delay: 0.4s; }
-/* Gold card pulse */
-.home-btn-gold { animation: pulse-border-gold 2.5s ease-in-out infinite !important; }
-.home-btn-green { animation: pulse-border-green 2.5s ease-in-out infinite !important; }
-.home-btn-red { animation: pulse-border-red 2.5s ease-in-out infinite !important; }
-/* Image 3D hover */
-.home-btn:hover .btn-icon {
-  animation: spin3d 0.7s ease forwards !important;
-  filter: drop-shadow(0 20px 40px rgba(255,215,0,0.8)) !important;
-}
-.home-btn-green:hover .btn-icon {
-  filter: drop-shadow(0 20px 40px rgba(0,255,136,0.8)) !important;
-}
-/* Subtitle shimmer */
-#page-home p {
-  background: linear-gradient(90deg, #555, #aaa, #555);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
-/* Developer card subtle glow */
-#page-home > div[style*="bottom:20px"] {
-  animation: fadeInUp 1s ease 0.5s both;
-  transition: box-shadow 0.3s;
-}
-#page-home > div[style*="bottom:20px"]:hover {
-  box-shadow: 0 0 20px rgba(255,215,0,0.3) !important;
-}
-.btn-icon{animation:spin 8s linear infinite;}
-
-@keyframes tn-fadein {
-  from { opacity:0; transform:translateX(40px); }
-  to   { opacity:1; transform:translateX(0); }
-}
-@keyframes tn-pulse-red {
-  0%,100% { box-shadow: 0 0 0px #E70013; }
-  50%      { box-shadow: 0 0 18px #E70013, 0 0 40px rgba(231,0,19,0.3); }
-}
-@keyframes tn-slot-glow {
-  0%,100% { box-shadow: none; }
-  50%      { box-shadow: 0 0 12px #E70013; }
-}
-.tn-card {
-  animation: tn-fadein 0.4s ease both;
-}
-.tn-card:nth-child(3) { animation-delay: 0.05s; }
-.tn-card:nth-child(4) { animation-delay: 0.12s; }
-.tn-card:nth-child(5) { animation-delay: 0.20s; }
-.tn-card-selected {
-  animation: tn-pulse-red 1.8s ease infinite !important;
-  border-color: #E70013 !important;
-}
-.tn-slot-active {
-  animation: tn-slot-glow 1.5s ease infinite;
-}
-</style><style>
-@keyframes rotate3d {
-  0%   { transform: rotateY(0deg); }
-  100% { transform: rotateY(360deg); }
-}
-.btn-icon {
-  animation: rotate3d 4s linear infinite !important;
-  transform-style: preserve-3d;
-}
-.home-btn:hover .btn-icon {
-  animation: rotate3d 0.6s linear infinite !important;
-}
-.btn-icon{animation:spin 8s linear infinite;}
-
-@keyframes tn-fadein {
-  from { opacity:0; transform:translateX(40px); }
-  to   { opacity:1; transform:translateX(0); }
-}
-@keyframes tn-pulse-red {
-  0%,100% { box-shadow: 0 0 0px #E70013; }
-  50%      { box-shadow: 0 0 18px #E70013, 0 0 40px rgba(231,0,19,0.3); }
-}
-@keyframes tn-slot-glow {
-  0%,100% { box-shadow: none; }
-  50%      { box-shadow: 0 0 12px #E70013; }
-}
-.tn-card {
-  animation: tn-fadein 0.4s ease both;
-}
-.tn-card:nth-child(3) { animation-delay: 0.05s; }
-.tn-card:nth-child(4) { animation-delay: 0.12s; }
-.tn-card:nth-child(5) { animation-delay: 0.20s; }
-.tn-card-selected {
-  animation: tn-pulse-red 1.8s ease infinite !important;
-  border-color: #E70013 !important;
-}
-.tn-slot-active {
-  animation: tn-slot-glow 1.5s ease infinite;
-}
-</style></head>
+</head>
 
 <body>
 
@@ -808,34 +631,26 @@
       <p style="font-family:Barlow Condensed,sans-serif;color:#777;font-size:18px;letter-spacing:4px;">2025 / 2026</p>
     </div>
     <div style="display:flex;gap:30px;flex-wrap:wrap;justify-content:center;">
-      <button onclick="startBestXI()" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #FFD700;border-radius:16px;color:#FFD700;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        <div style="background:linear-gradient(135deg,#1a1200,#2a1f00);border-radius:8px;padding:6px 20px;border-bottom:2px solid #FFD700;margin-bottom:4px;"><span style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:13px;font-weight:900;letter-spacing:3px;">MONDE</span></div>
-<img src="https://tse2.mm.bing.net/th/id/OIP.IVLQgNj1yYrd-UO710ihOgHaGQ?pid=Api&P=0&h=180" style="width:160px;height:140px;object-fit:contain;border-radius:12px;transition:transform 0.4s ease;filter:drop-shadow(0 10px 30px rgba(255,215,0,0.6));" class="btn-icon">
+      <button onclick="startBestXI()" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #FFD700;border-radius:16px;color:#FFD700;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform=\'scale(1.05)\'" onmouseout="this.style.transform=\'scale(1)\'">
+        <span style="font-size:50px;">&#9917;</span>
         BEST XI
         <span style="font-size:12px;color:#aaa;font-weight:400;letter-spacing:0;margin-top:6px;display:block;padding:0 10px;text-align:center;">Chaque fois 3 joueurs par poste, choisis 1 pour former ton equipe 2025/2026 et choisis le coach a la fin</span>
       </button>
-      <button onclick="showPage('tierlist')" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #00ff88;border-radius:16px;color:#00ff88;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        <div style="background:linear-gradient(135deg,#001a0d,#002a15);border-radius:8px;padding:6px 20px;border-bottom:2px solid #00ff88;margin-bottom:4px;"><span style="font-family:Barlow Condensed,sans-serif;color:#00ff88;font-size:13px;font-weight:900;letter-spacing:3px;">MONDE</span></div>
-<img src="https://tse4.mm.bing.net/th/id/OIP.MlP5lDLcWPG0vdny3RILSQHaGA?pid=Api&P=0&h=180" style="width:160px;height:140px;object-fit:contain;border-radius:12px;transition:transform 0.4s ease;filter:drop-shadow(0 10px 30px rgba(0,255,136,0.6));" class="btn-icon">
+      <button onclick="showPage('tierlist')" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #00ff88;border-radius:16px;color:#00ff88;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform=\'scale(1.05)\'" onmouseout="this.style.transform=\'scale(1)\'">
+        <span style="font-size:50px;">&#127942;</span>
         TIER LIST
         <span style="font-size:12px;color:#aaa;font-weight:400;letter-spacing:0;margin-top:6px;display:block;padding:0 10px;text-align:center;">24 joueurs a classer, 3 categories S A B, tu peux renommer chaque categorie</span>
-      </button>
-      <button onclick="showPage('tunisia');startTunisiaXI();" class="home-btn home-btn-red" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #E70013;border-radius:16px;color:#E70013;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-        <div style="background:#E70013;color:#fff;font-size:11px;font-weight:800;letter-spacing:4px;padding:4px 14px;border-radius:4px;margin-bottom:4px;">TUNISIE</div>
-        <img src="logo-tunisia.png" class="btn-icon" style="width:160px;height:160px;object-fit:contain;">
-        <span>BEST XI</span>
-        <p style="font-size:13px;font-weight:400;color:#ccc;text-align:center;padding:0 16px;letter-spacing:1px;line-height:1.4;">Chaque fois 3 joueurs par poste, choisis 1 pour former ton equipe tunisienne</p>
       </button>
     </div>
   </div>
 </div>
-<div id="wrap" style="display:flex;flex-direction:row;width:100%;height:100vh;overflow:hidden;"><div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div>
+<div id="wrap"><div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div>
 
 
 
   <!-- LEFT PITCH -->
 
-  <div id="left" style="flex:1;height:100%;overflow:hidden;">
+  <div id="left">
 
     <div id="pitch-wrap">
 
@@ -881,7 +696,7 @@
 
   <!-- RIGHT SELECTION -->
 
-  <div id="right" style="width:420px;flex-shrink:0;height:100%;overflow-y:auto;background:#111;">
+  <div id="right">
 
     <div id="step-head">
 
@@ -1505,10 +1320,6 @@ function goBack() {
 function startBestXI() { showPage("bestxi"); if(typeof step!=="undefined"){step=0;picks={};buildPitch();renderStep();} }
 document.addEventListener("DOMContentLoaded", init);
 function showPage(page) {
-  var hbtn = document.getElementById("home-nav-btn");
-  if(hbtn) hbtn.style.display = page==="home" ? "none" : "block";
-  var fixedBtns = document.querySelectorAll('div[style*="position:fixed"]');
-  var tn=document.getElementById("page-tunisia"); if(tn) tn.style.display=page==="tunisia"?"flex":"none";
   var home = document.getElementById("page-home");
   var wrap = document.getElementById("wrap");
   var tier = document.getElementById("page-tierlist");
@@ -1638,212 +1449,7 @@ function drop(e, target) {
   document.querySelectorAll("[draggable]").forEach(function(d){ if(d.querySelector && d.querySelector("div") && d.querySelector("div").textContent === name) d.remove(); });
   target.appendChild(makeCard(player, false));
 }
-</script>
-
-<div id="page-tunisia" style="display:none;width:100%;height:100vh;background:#0a0a0a;flex-direction:row;overflow:hidden;">
-  <!-- TERRAIN GAUCHE -->
-  <div style="flex:1;position:relative;background:linear-gradient(180deg,#0a2a0a,#0d3d0d,#0a2a0a);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-    <!-- Lignes terrain -->
-    <div style="position:absolute;width:75%;height:88%;border:2px solid rgba(255,255,255,0.25);border-radius:4px;"></div>
-    <div style="position:absolute;width:75%;height:1px;background:rgba(255,255,255,0.2);top:50%;"></div>
-    <div style="position:absolute;width:120px;height:120px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-    <div style="position:absolute;width:28%;height:18%;border:2px solid rgba(255,255,255,0.2);top:6%;left:50%;transform:translateX(-50%);"></div>
-    <div style="position:absolute;width:28%;height:18%;border:2px solid rgba(255,255,255,0.2);bottom:6%;left:50%;transform:translateX(-50%);"></div>
-    <!-- Slots joueurs 4-3-3 -->
-    <!-- GK -->
-    <div id="tn-slot-coach" style="position:absolute;top:2%;right:2%;width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #FFD700;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#FFD700;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">COACH</div>
-  <div id="tn-slot-gk" style="position:absolute;top:8%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #E70013;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#E70013;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">GK</div>
-    <!-- DEF -->
-    <div id="tn-slot-rb" style="position:absolute;top:26%;left:72%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RB</div>
-    <div id="tn-slot-cb1" style="position:absolute;top:26%;left:57%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
-    <div id="tn-slot-cb2" style="position:absolute;top:26%;left:42%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
-    <div id="tn-slot-lb" style="position:absolute;top:26%;left:27%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LB</div>
-    <!-- MID -->
-    <div id="tn-slot-cm1" style="position:absolute;top:46%;left:64%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
-    <div id="tn-slot-cdm" style="position:absolute;top:46%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CDM</div>
-    <div id="tn-slot-cm2" style="position:absolute;top:46%;left:36%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
-    <!-- ATT -->
-    <div id="tn-slot-rw" style="position:absolute;top:66%;left:68%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RW</div>
-    <div id="tn-slot-st" style="position:absolute;top:66%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">ST</div>
-    <div id="tn-slot-lw" style="position:absolute;top:66%;left:32%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LW</div>
-  </div>
-  <!-- PANNEAU DROITE DYNAMIQUE -->
-  <div id="tn-panel" style="width:420px;background:#111;display:flex;flex-direction:column;padding:24px;gap:14px;overflow-y:auto;">
-  </div>
-</div>
-<script>
-var tnStep = 0; var home_page = "home";
-var tnPicks = {};
-var tnSteps = [
-  { pos:"gk", slot:"tn-slot-gk", label:"1 / 11 — GOALKEEPER", title:"GARDIEN DE BUT", players:[
-    {name:"AYMEN DAHMEN", club:"CS Sfaxien", age:"29 ans", mv:"715k", img:"https://static.flashscore.com/res/image/data/QmUS6OCa-lSbL00eG.png"},
-    {name:"ABDELMOUHIB CHAMAKH", club:"Club Africain", age:"24 ans", mv:"851k", img:"https://static.flashscore.com/res/image/data/K0bbVQDa-WnKvWss7.png"},
-    {name:"BECHIR BEN SAID", club:"Esperance Tunis", age:"31 ans", mv:"562k", img:"https://static.flashscore.com/res/image/data/4C42SQFG-Eg24ohRo.png"}
-  ]},
-  { pos:"cb1", slot:"tn-slot-cb1", label:"2 / 11 — CENTER BACK", title:"DEFENSEUR CENTRAL", players:[
-    {name:"HAMZA BEN ABDA", club:"Club Africain", age:"31 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/Wf8JhtwS-WWu2CRtL.png"},
-    {name:"HAMZA JELASSI", club:"Esperance Tunis", age:"34 ans", mv:"343k", img:"https://static.flashscore.com/res/image/data/GflDaQWg-tK0qtuln.png"},
-    {name:"HICHEM BACCAR", club:"CS Sfaxien", age:"25 ans", mv:"691k", img:"https://static.flashscore.com/res/image/data/29HfkjDa-WIOovKDQ.png"}
-  ]},
-  { pos:"cb2", slot:"tn-slot-cb2", label:"3 / 11 — CENTER BACK", title:"DEFENSEUR CENTRAL", players:[
-    {name:"TAOUFIK CHERIFI", club:"Club Africain", age:"24 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/0r8UG8Ca-vs1m1pCj.png"},
-    {name:"MOHAMED TOUGAI", club:"Esperance Tunis", age:"26 ans", mv:"1.3m", img:"https://static.flashscore.com/res/image/data/S4vlg0FG-r9jkPGua.png"},
-    {name:"HAMZA BEN ABDA", club:"Club Africain", age:"31 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/Wf8JhtwS-WWu2CRtL.png"}
-  ]},
-  { pos:"lb", slot:"tn-slot-lb", label:"4 / 11 — LEFT BACK", title:"DEFENSEUR GAUCHE", players:[
-    {name:"OUSSAMA SHILI", club:"Club Africain", age:"29 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/2gV8z9Ca-4WYdb6yU.png"},
-    {name:"MOHAMED BEN ALI", club:"Esperance Tunis", age:"31 ans", mv:"482k", img:"https://static.flashscore.com/res/image/data/fDo2nOil-C4II6KaD.png"},
-    {name:"KEVIN MONDEKO ZATU", club:"CS Sfaxien", age:"30 ans", mv:"511k", img:"https://static.flashscore.com/res/image/data/84J5FQzB-xfQTxQp6.png"}
-  ]},
-  { pos:"rb", slot:"tn-slot-rb", label:"5 / 11 — RIGHT BACK", title:"DEFENSEUR DROIT", players:[
-    {name:"GHAITH ZAALOUNI", club:"Club Africain", age:"24 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/n5ogLP9r-0AzSJQvl.png"},
-    {name:"MOHAMED BEN HAMIDA", club:"Esperance Tunis", age:"30 ans", mv:"950k", img:"https://static.flashscore.com/res/image/data/vcy34QHG-Cp6u72PF.png"},
-    {name:"ALI MAALOUL", club:"CS Sfaxien", age:"36 ans", mv:"181k", img:"https://static.flashscore.com/res/image/data/6V19PoCr-C8EFM7WN.png"}
-  ]},
-  { pos:"cdm", slot:"tn-slot-cdm", label:"6 / 11 — CDM", title:"MILIEU DEFENSIF", players:[
-    {name:"ONUCHE OGBELU", club:"Esperance Tunis", age:"23 ans", mv:"1.1m", img:"https://static.flashscore.com/res/image/data/WIjGOmzB-022o47ar.png"},
-    {name:"SAIDOU KHAN", club:"Club Africain", age:"30 ans", mv:"238k", img:"https://static.flashscore.com/res/image/data/jLQgpff5-dC60tYQc.png"},
-    {name:"TRAVIS MUTYABA", club:"CS Sfaxien", age:"20 ans", mv:"421k", img:"https://static.flashscore.com/res/image/data/AFdAvYh5-IZYDgL5g.png"}
-  ]},
-  { pos:"cm1", slot:"tn-slot-cm1", label:"7 / 11 — CM", title:"MILIEU CENTRAL", players:[
-    {name:"ABDRAMANE KONATE", club:"Esperance Tunis", age:"19 ans", mv:"784k", img:"https://static.flashscore.com/res/image/data/nu2f0DyB-IuruetYK.png"},
-    {name:"MOATAZ ZEMZEMI", club:"Club Africain", age:"26 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/hxiFbAWg-dlKkqbYG.png"},
-    {name:"RAYANE ANANE", club:"Etoile Sahel", age:"19 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/dMmqPWfM-0UW9EpZA.png"}
-  ]},
-  { pos:"cm2", slot:"tn-slot-cm2", label:"8 / 11 — CM", title:"MILIEU CENTRAL", players:[
-    {name:"HAMZA RAFIA", club:"Esperance Tunis", age:"27 ans", mv:"993k", img:"https://static.flashscore.com/res/image/data/vqAEVLjl-O2Ow4Qc6.png"},
-    {name:"HOUSSEM TKA", club:"Esperance Tunis", age:"25 ans", mv:"950k", img:"https://static.flashscore.com/res/image/data/SnPIIKeM-MFqZE5YG.png"},
-    {name:"AMATH NDAW", club:"Stade Tunisien", age:"24 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/2B6RYwXg-0bhGkmbt.png"}
-  ]},
-  { pos:"rw", slot:"tn-slot-rw", label:"9 / 11 — RIGHT WING", title:"AILIER DROIT", players:[
-    {name:"BILEL AIT MALEK", club:"Club Africain", age:"29 ans", mv:"830k", img:"https://static.flashscore.com/res/image/data/ji33gowS-IXXhJSnH.png"},
-    {name:"EMMANUEL OGBOLE", club:"CS Sfaxien", age:"23 ans", mv:"N/A", img:"https://static.flashscore.com/res/image/data/G8s2koFa-KETzKlnh.png"},
-    {name:"YAN SASSE", club:"Esperance Tunis", age:"28 ans", mv:"1.3m", img:"https://static.flashscore.com/res/image/data/dt2cgPYg-n3Qx4ylf.png"}
-  ]},
-  { pos:"st", slot:"tn-slot-st", label:"10 / 11 — STRIKER", title:"ATTAQUANT", players:[
-    {name:"FLORIAN DANHO", club:"Esperance Tunis", age:"25 ans", mv:"635k", img:"https://static.flashscore.com/res/image/data/65n9DRyS-IDmUYnZ3.png"},
-    {name:"FIRAS CHAOUAT", club:"Club Africain", age:"30 ans", mv:"1.1m", img:"https://static.flashscore.com/res/image/data/EL8CsfBr-2X9WEIyE.png"},
-    {name:"OMAR BEN ALI", club:"CS Sfaxien", age:"21 ans", mv:"787k", img:"https://static.flashscore.com/res/image/data/ziFqV5hl-lABaXzzC.png"}
-  ]},
-  { pos:"lw", slot:"tn-slot-lw", label:"11 / 12 — LEFT WING", title:"AILIER GAUCHE", players:[
-    {name:"KOUCEILA BOUALIA", club:"Esperance Tunis", age:"25 ans", mv:"749k", img:"https://static.flashscore.com/res/image/data/KUNSE9dM-hr83Inic.png"},
-    {name:"HAMZA KHADHRAOUI", club:"Club Africain", age:"27 ans", mv:"957k", img:"https://static.flashscore.com/res/image/data/vTetqTAr-YVrigF7l.png"},
-    {name:"IYED BELWAFI", club:"CS Sfaxien", age:"23 ans", mv:"N/A", img:"belwafi.png"}
-  ]},
-  { pos:"coach", slot:"tn-slot-coach", label:"12 / 12 — COACH", title:"ENTRAINEUR", players:[
-    {name:"FAOUZI BENZARTI", club:"Club Africain", age:"76 ans", mv:"—", img:"https://static.flashscore.com/res/image/data/OzYTtzdM-t8nTEIjj.png"},
-    {name:"MOHAMED KOUKI", club:"CS Sfaxien", age:"51 ans", mv:"—", img:"https://tse3.explicit.bing.net/th/id/OIP.OWBL_xCpJFlQsxG0LLkSBwAAAA?pid=Api&P=0&h=180"},
-    {name:"MONCEF MCHAREK", club:"Zarzis", age:"—", mv:"—", img:"https://tse2.mm.bing.net/th/id/OIP.pQRiQsrODgQCd8vfikUlWgHaER?pid=Api&P=0&h=180"}
-  ]}
-];
-function startTunisiaXI() {
-  tnStep=0; tnPicks={};
-  var pg = document.getElementById("page-tunisia");
-  if(pg) pg.style.display="flex";
-  setTimeout(tnRender, 100);
-}
-function tnRender() {
-  // Enlever glow precedent
-  document.querySelectorAll('.tn-slot-active').forEach(function(el){el.classList.remove('tn-slot-active');});
-  var s = tnSteps[tnStep];
-  var slotEl = document.getElementById(s.slot);
-  if(slotEl && !tnPicks[s.pos]) slotEl.classList.add('tn-slot-active');
-  var html = "<div style='color:#E70013;font-size:11px;font-weight:700;letter-spacing:4px;'>"+s.label+"</div>";
-  html += "<div style='font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:42px;font-weight:900;letter-spacing:2px;line-height:1;'>"+s.title+"</div>";
-  s.players.forEach(function(p,i){
-    var border = (i===0)?"#E70013":"#333";
-    var delay=(i*0.08).toFixed(2); html += "<div onclick='tnPick("+tnStep+","+i+")' id='tn-card-"+i+"' class='tn-card' style='display:flex;align-items:center;gap:16px;background:#1a1a1a;border:2px solid "+border+";border-radius:12px;padding:12px;cursor:pointer;transition:all 0.2s;animation-delay:"+delay+"s;'>";
-    html += "<img src='"+p.img+"' style='width:80px;height:100px;object-fit:cover;border-radius:8px;'>";
-    html += "<div><div style='font-family:Barlow Condensed,sans-serif;color:#fff;font-size:20px;font-weight:900;'>"+p.name+"</div>";
-    html += "<div style='color:#E70013;font-size:13px;font-weight:600;'>"+p.club+"</div>";
-    html += "<div style='color:#888;font-size:12px;'>"+p.age+" · <span style='color:#FFD700;'>"+p.mv+"</span></div></div></div>";
-  });
-  html += "<button onclick='tnBack()' style='margin-top:auto;padding:14px;background:transparent;border:1px solid #444;color:#aaa;border-radius:8px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:2px;'>← RETOUR</button>";
-  document.getElementById("tn-panel").innerHTML = html;
-}
-function tnShowRecap() {
-  var html = "<div style='color:#E70013;font-size:11px;font-weight:700;letter-spacing:4px;'>VOTRE EQUIPE TUNISIA XI</div>";
-  html += "<div style='font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:36px;font-weight:900;line-height:1;margin-bottom:4px;'>RECAPITULATIF</div>";
-  var total = tnSteps.length;
-  var done = Object.keys(tnPicks).length;
-  html += "<div style='color:#aaa;font-size:13px;margin-bottom:6px;'>"+done+" / "+total+" joueurs selectiones</div>";
-  html += "<div style='width:100%;height:6px;background:#333;border-radius:4px;margin-bottom:14px;'><div style='width:100%;height:6px;background:linear-gradient(90deg,#E70013,#FFD700);border-radius:4px;'></div></div>";
-  // Calculer stats
-  var totalMV = 0; var countMV = 0;
-  var totalAge = 0; var countAge = 0;
-  var clubs = {};
-  for(var p in tnPicks) {
-    var pl = tnPicks[p];
-    if(pl.mv && pl.mv !== 'N/A' && pl.mv !== '-' && pl.mv !== 'n/a') {
-      var mv = pl.mv.toString().replace('k','000').replace('m','000000').replace('.','');
-      if(!isNaN(mv)) { totalMV += parseInt(mv); countMV++; }
-    }
-    if(pl.age) {
-      var a = parseInt(pl.age);
-      if(!isNaN(a)) { totalAge += a; countAge++; }
-    }
-    if(pl.club) { clubs[pl.club] = (clubs[pl.club]||0)+1; }
-  }
-  var mvStr = totalMV >= 1000000 ? (totalMV/1000000).toFixed(1)+'M' : (totalMV/1000).toFixed(0)+'K';
-  var avgAge = countAge > 0 ? (totalAge/countAge).toFixed(1) : '-';
-  html += "<div style='display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;'>";
-  html += "<div style='background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;text-align:center;'>";
-  html += "<div style='color:#E70013;font-size:10px;font-weight:700;letter-spacing:2px;'>VALEUR TOTALE</div>";
-  html += "<div style='color:#FFD700;font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;'>€"+mvStr+"</div></div>";
-  html += "<div style='background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;text-align:center;'>";
-  html += "<div style='color:#E70013;font-size:10px;font-weight:700;letter-spacing:2px;'>AGE MOYEN</div>";
-  html += "<div style='color:#FFD700;font-family:Barlow Condensed,sans-serif;font-size:22px;font-weight:900;'>"+avgAge+" ans</div></div>";
-  html += "</div>";
-  html += "<div style='background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:10px;margin-bottom:12px;'>";
-  html += "<div style='color:#E70013;font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:8px;'>JOUEURS PAR CLUB</div>";
-  for(var club in clubs) {
-    var pct2 = Math.round((clubs[club]/done)*100);
-    html += "<div style='margin-bottom:6px;'>";
-    html += "<div style='display:flex;justify-content:space-between;color:#fff;font-size:12px;margin-bottom:3px;'><span>"+club+"</span><span style='color:#FFD700;font-weight:700;'>"+clubs[club]+" joueurs</span></div>";
-    html += "<div style='width:100%;height:4px;background:#333;border-radius:4px;'><div style='width:"+pct2+"%;height:4px;background:#E70013;border-radius:4px;'></div></div>";
-    html += "</div>";
-  }
-  html += "</div>";
-  var labels = {gk:'GK',cb1:'CB',cb2:'CB',rb:'RB',lb:'LB',cdm:'CDM',cm1:'CM',cm2:'CM',rw:'RW',st:'ST',lw:'LW',coach:'COACH'};
-  for(var pos in tnPicks) {
-    var p = tnPicks[pos];
-    html += "<div style='display:flex;align-items:center;gap:12px;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:8px;'>";
-    html += "<div style='background:#E70013;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:4px;min-width:40px;text-align:center;'>"+(labels[pos]||pos)+"</div>";
-    html += "<img src='"+p.img+"' style='width:44px;height:55px;object-fit:cover;border-radius:6px;'>";
-    html += "<div style='font-family:Barlow Condensed,sans-serif;color:#fff;font-size:15px;font-weight:700;'>"+p.name+"<br><span style='color:#E70013;font-size:12px;font-weight:400;'>"+p.club+"</span></div>";
-    html += "</div>";
-  }
-  html += "<button onclick='startTunisiaXI()' style='margin-top:8px;padding:14px;background:#E70013;border:none;color:#fff;border-radius:8px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:2px;'>&#8635; RECOMMENCER</button>";
-  html += "<button onclick='showPage(String.fromCharCode(104,111,109,101))' style='padding:14px;background:transparent;border:1px solid #444;color:#aaa;border-radius:8px;font-family:Barlow Condensed,sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:2px;'>&#8592; ACCUEIL</button>";
-  document.getElementById("tn-panel").innerHTML = html;
-}
-
-function tnBack() {
-  if(tnStep > 0) { tnStep--; tnRender(); }
-  else { showPage("home"); }
-}
-function tnPick(stepIdx, playerIdx) {
-  // Highlight carte selectionnee
-  for(var x=0;x<3;x++){var c=document.getElementById('tn-card-'+x);if(c)c.classList.remove('tn-card-selected');}
-  var chosen=document.getElementById('tn-card-'+playerIdx);
-  if(chosen){chosen.classList.add('tn-card-selected');}
-  var s = tnSteps[stepIdx];
-  var p = s.players[playerIdx];
-  tnPicks[s.pos] = p;
-  var slot = document.getElementById(s.slot);
-  if(slot) {
-    slot.style.border = "2px solid #E70013";
-    slot.innerHTML = "<img src='"+p.img+"' style='width:66px;height:88px;object-fit:cover;border-radius:8px;'>";
-  }
-  if(tnStep < tnSteps.length - 1) {
-    tnStep++;
-    setTimeout(tnRender, 300);
-  } else {
-    setTimeout(tnShowRecap, 400);
-  }
-}
-</script>
-</body>
+</script></body>
 
 </html>
 

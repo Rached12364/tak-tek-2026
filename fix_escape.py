@@ -1,0 +1,7 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+content = content.replace("onmouseover=\"this.style.transform=\\\\\'scale(1.05)\\\\\'\"", "onmouseover=\"this.style.transform='scale(1.05)'\"")
+content = content.replace("onmouseout=\"this.style.transform=\\\\\'scale(1)\\\\\'\"", "onmouseout=\"this.style.transform='scale(1)'\"")
+content = content.replace("onmouseover=\"this.style.transform=\\\'scale(1.05)\\\'\"", "onmouseover=\"this.style.transform='scale(1.05)'\"")
+content = content.replace("onmouseout=\"this.style.transform=\\\'scale(1)\\\'\"", "onmouseout=\"this.style.transform='scale(1)'\"")
+open('index.html','w',encoding='utf-8').write(content)
+print('done')

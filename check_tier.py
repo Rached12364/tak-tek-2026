@@ -1,0 +1,6 @@
+﻿lines = open('index.html','r',encoding='utf-8').read().split('\n')
+print(lines[1510][:300])
+print("---")
+print(lines[1511][:300])
+print("---")
+print(lines[1512][:300])

@@ -1,0 +1,5 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+idx = content.find('id="page-tunisia"')
+print(repr(content[idx:idx+150]))
+idx2 = content.find('id="tn-main"')
+print(repr(content[idx2:idx2+150]))

@@ -1,0 +1,5 @@
+﻿content = open('index.html', 'r', encoding='utf-8').read()
+content = content.replace('?? LE MONDE VOTE', 'TUNISIE')
+content = content.replace('?? LE MONDE CLASSE', 'TUNISIE')
+open('index.html', 'w', encoding='utf-8').write(content)
+print('done')
