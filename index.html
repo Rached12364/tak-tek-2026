@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Best XI 2025/2026</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+    :root {
+
+      --gold: #FFD700;
+
+      --gold2: #FFA500;
+
+      --bg: #0a0a0a;
+
+      --card: #161616;
+
+      --green1: #1a3d1a;
+
+      --green2: #1f4d1f;
+
+      --ring1: #FF6B35;
+
+      --ring2: #00B4D8;
+
+    }
+
+
+
+    html { height:100%; } body { min-height:100%; overflow-y:auto; /* min-height: 100%; width: 100%; background: var(--bg); font-family: 'Barlow', sans-serif; color: #fff; }
+
+
+
+    /* ── HEADER ── */
+
+    #header { display:flex; align-items:center; padding:0 16px; gap:20px; height:61px; background:#0a0a0a; border-bottom:1px solid #FFD700; position:relative; }
+
+    #header h1 {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 22px; font-weight: 900; letter-spacing: 5px;
+
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+      text-transform: uppercase;
+
+    }
+
+    #header p {
+
+      font-size: 9px; letter-spacing: 3px; color: #555; text-transform: uppercase;
+
+    }
+
+
+
+    /* ── PROGRESS ── */
+
+    #prog-track {
+
+      height: 3px; background: #1a1a1a; flex-shrink: 0;
+
+    }
+
+    #prog-bar {
+
+      height: 100%; width: 0%;
+
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+
+      transition: width 0.4s ease;
+
+      box-shadow: 0 0 8px var(--gold);
+
+    }
+
+
+
+    /* ── WRAPPER ── */
+
+    #wrap { display:flex; width:100%; min-height:100vh; background:#0a0a0a; }
+
+
+
+    /* ════════════════════════
+
+       LEFT — PITCH
+
+    ════════════════════════ */
+
+    #left { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:20px; background:#0a0a0a; }
+
+
+
+    #pitch-wrap { position: relative; width: 100%; max-width: 500px; height: 100%; max-height: calc(100vh - 80px); }
+
+
+
+    #pitch {
+
+      position: relative;
+
+      width: 100%; height: 100%; overflow: visible; background: repeating-linear-gradient(
+
+        to bottom,
+
+        var(--green1) 0px, var(--green1) 34px,
+
+        var(--green2) 34px, var(--green2) 68px
+
+      );
+
+      border-radius: 8px; overflow: visible; border: 1.5px solid rgba(255,255,255,0.2);
+
+      box-shadow: 0 0 60px rgba(0,0,0,0.9), 0 20px 60px rgba(0,0,0,0.7);
+
+      transform: perspective(700px) rotateX(16deg);
+
+      transform-origin: top center;
+
+      overflow: visible;
+
+    }
+
+
+
+    /* SVG lines */
+
+    #pitch svg {
+
+      position: absolute; inset: 0;
+
+      width: 100%; height: 100%;
+
+      pointer-events: none; border-radius: 8px; overflow: visible;
+
+    }
+
+
+
+    /* Player slots */
+
+    .pslot {
+
+      position: absolute;
+
+      transform: translate(-50%, -50%);
+
+      display: flex; flex-direction: column; align-items: center;
+
+      gap: 3px; z-index: 5;
+
+    }
+
+
+
+    .pcircle { width: 80px; height: 112px; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow-y: auto; flex-shrink: 0; transition: transform 0.2s; }
+
+
+
+    .pcircle.empty { background: rgba(0,0,0,0.35); border: 2px dashed rgba(255,255,255,0.2); border-radius: 8px; animation: pulse 2s ease-in-out infinite; }
+
+
+
+    .pcircle.active-empty {
+
+      border-color: var(--gold) !important;
+
+      box-shadow: 0 0 14px var(--gold);
+
+      animation: none !important;
+
+    }
+
+
+
+    .pcircle.filled { position: relative; background: transparent; }
+
+    .pcircle.filled::before { display: none; }
+
+    .pcircle.filled img { width: 100%; height: 100%; object-fit: contain; background: #0a0a0a; border-radius: 8px; background: transparent; }
+
+
+
+    .pfallback {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 13px; font-weight: 800; color: var(--gold);
+
+      display: flex; align-items: center; justify-content: center;
+
+      width: 100%; height: 100%; background: #1a1a1a; border-radius: 50%;
+
+    }
+
+
+
+    .plabel {
+
+      font-size: 8px; color: rgba(255,255,255,0.3);
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-weight: 700; letter-spacing: 1px;
+
+    }
+
+
+
+    .pname { font-family: "Barlow Condensed", sans-serif; font-size: 12px; font-weight: 800; color: #fff; text-transform: uppercase; text-shadow: 1px 1px 3px #000, -1px -1px 3px #000; text-align: center; white-space: nowrap; opacity: 0; transition: opacity 0.3s; letter-spacing: 0.3px; }
+
+    .pname.show { opacity: 1; }
+
+
+
+    @keyframes pulse {
+
+      0%,100% { opacity: 0.4; }
+
+      50% { opacity: 0.9; box-shadow: 0 0 8px rgba(255,255,255,0.15); }
+
+    }
+
+
+
+    @keyframes popin {
+
+      0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+
+      65% { transform: scale(1.3) rotate(3deg); opacity: 1; }
+
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+
+    }
+
+    .popin { animation: popin 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+
+
+    /* ════════════════════════
+
+       RIGHT — SELECTION
+
+    ════════════════════════ */
+
+    #right {
+
+      width: 44%;
+
+      background: #0f0f0f;
+
+      border-left: 1px solid #1c1c1c;
+
+      display: flex; flex-direction: column; overflow: visible;
+
+    }
+
+
+
+    /* Step header */
+
+    #step-head {
+
+      padding: 16px 20px 12px;
+
+      border-bottom: 1px solid #1c1c1c;
+
+      flex-shrink: 0;
+
+    }
+
+    #step-num {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 11px; font-weight: 700;
+
+      color: var(--gold); opacity: 0.7;
+
+      letter-spacing: 2px; text-transform: uppercase;
+
+      margin-bottom: 4px;
+
+    }
+
+    #step-lbl {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 30px; font-weight: 900;
+
+      color: var(--gold); letter-spacing: 3px;
+
+      text-transform: uppercase; line-height: 1;
+
+    }
+
+
+
+    /* Cards */
+
+    #cards {
+
+      flex: 1; overflow-y: visible;
+
+      padding: 14px 16px;
+
+      display: flex; flex-direction: column; gap: 10px;
+
+      scrollbar-width: thin; scrollbar-color: #222 transparent;
+
+    }
+
+
+
+    .card {
+
+      display: flex; align-items: center; gap: 12px;
+
+      padding: 12px 14px;
+
+      background: var(--card);
+
+      border: 1px solid #252525;
+
+      border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: all 0.18s ease;
+
+      position: relative;
+
+    }
+
+    .card:hover {
+
+      border-color: var(--gold);
+
+      transform: translateX(5px);
+
+      box-shadow: -4px 0 0 var(--gold), 0 0 20px rgba(255,215,0,0.12);
+
+    }
+
+    .card.sel {
+
+      border-color: var(--gold);
+
+      background: #191400;
+
+      box-shadow: 0 0 20px rgba(255,215,0,0.18);
+
+    }
+
+
+
+    .card-ava { width: 90px; height: 125px; border-radius: 8px; padding: 2px; background: linear-gradient(135deg, #FF6B35, #00B4D8); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+
+    .card-ava img { width: 100%; height: 100%; border-radius: 6px; object-fit: contain; background: #0a0a0a; background: #0a0a0a; }
+
+
+
+    .card-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+
+    .card-name {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 17px; font-weight: 800;
+
+      color: #fff; text-transform: uppercase; letter-spacing: 0.5px;
+
+    }
+
+    .card-club { font-size: 11px; font-weight: 600; color: var(--gold); }
+
+    .card-ctry { font-size: 11px; color: #666; }
+
+
+
+    .card-chk {
+
+      width: 26px; height: 26px; border-radius: 50%;
+
+      background: var(--gold); color: #000;
+
+      display: flex; align-items: center; justify-content: center;
+
+      font-size: 13px; font-weight: 900; flex-shrink: 0;
+
+    }
+
+
+
+    /* Next button */
+
+    #btn-zone {
+
+      padding: 14px 16px;
+
+      border-top: 1px solid #1c1c1c;
+
+      flex-shrink: 0;
+
+    }
+
+    #btn-next { display:none !important; } #btn-next-x {
+
+      width: 100%; padding: 13px;
+
+      background: var(--gold); color: #000;
+
+      border: none; border-radius: 8px;
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 17px; font-weight: 900;
+
+      letter-spacing: 3px; text-transform: uppercase;
+
+      cursor: pointer; transition: all 0.2s;
+
+    }
+
+    #btn-next:hover:not(:disabled) {
+
+      background: var(--gold2);
+
+      box-shadow: 0 6px 20px rgba(255,215,0,0.4);
+
+      transform: translateY(-2px);
+
+    }
+
+    #btn-next:disabled { opacity: 0.25; cursor: not-allowed; }
+
+
+
+    /* ════════════════════════
+
+       RESULT
+
+    ════════════════════════ */
+
+    #result {
+
+      display: none;
+
+      width: 44%;
+
+      background: #0f0f0f;
+
+      border-left: 1px solid #1c1c1c;
+
+      flex-direction: column; overflow: auto;
+
+    }
+
+    #res-head {
+
+      padding: 18px 20px 14px;
+
+      border-bottom: 1px solid #1c1c1c; flex-shrink: 0;
+
+    }
+
+    #res-head h2 {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 26px; font-weight: 900; letter-spacing: 3px;
+
+      color: var(--gold); text-transform: uppercase;
+
+    }
+
+    #res-head p { font-size: 11px; color: #555; letter-spacing: 1px; margin-top: 3px; }
+
+
+
+    #res-list {
+
+      flex: 1; overflow-y: visible;
+
+      padding: 10px 16px;
+
+      display: flex; flex-direction: column; gap: 7px;
+
+      scrollbar-width: thin; scrollbar-color: #222 transparent;
+
+    }
+
+    .ri {
+
+      display: flex; align-items: center; gap: 10px;
+
+      padding: 9px 12px;
+
+      background: var(--card); border: 1px solid #202020; border-radius: 8px;
+
+    }
+
+    .ri-ava {
+
+      width: 40px; height: 40px; border-radius: 50%;
+
+      overflow: auto; flex-shrink: 0;
+
+      border: 2px solid var(--gold);
+
+    }
+
+    .ri-ava img { width: 100%; height: 100%; object-fit: contain; background: #0a0a0a; }
+
+    .ri-info { display: flex; flex-direction: column; gap: 1px; }
+
+    .ri-pos { font-size: 9px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    .ri-name {
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 15px; font-weight: 800; color: #fff; text-transform: uppercase;
+
+    }
+
+    .ri-club { font-size: 10px; color: #555; }
+
+
+
+    #res-btns {
+
+      padding: 12px 16px; display: flex; gap: 8px;
+
+      border-top: 1px solid #1c1c1c; flex-shrink: 0;
+
+    }
+
+    .btn-g {
+
+      flex: 1; padding: 12px;
+
+      background: var(--gold); color: #000;
+
+      border: none; border-radius: 8px;
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 14px; font-weight: 900; letter-spacing: 2px;
+
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+
+    }
+
+    .btn-g:hover { background: var(--gold2); transform: translateY(-2px); }
+
+    .btn-o {
+
+      flex: 1; padding: 12px;
+
+      background: transparent; color: var(--gold);
+
+      border: 1px solid var(--gold); border-radius: 8px;
+
+      font-family: 'Barlow Condensed', sans-serif;
+
+      font-size: 14px; font-weight: 900; letter-spacing: 2px;
+
+      text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+
+    }
+
+    .btn-o:hover { background: rgba(255,215,0,0.08); transform: translateY(-2px); }
+
+
+
+    ::-webkit-scrollbar { width: 3px; }
+
+    ::-webkit-scrollbar-thumb { background: #252525; border-radius: 2px; }
+
+  </style>
+
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes glow-gold {
+  0%, 100% { text-shadow: 0 0 10px rgba(255,215,0,0.3); }
+  50% { text-shadow: 0 0 40px rgba(255,215,0,0.9), 0 0 80px rgba(255,215,0,0.4); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulse-border-gold {
+  0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,0.2), inset 0 0 10px rgba(255,215,0,0.05); }
+  50% { box-shadow: 0 0 30px rgba(255,215,0,0.5), inset 0 0 20px rgba(255,215,0,0.1); }
+}
+@keyframes pulse-border-green {
+  0%, 100% { box-shadow: 0 0 10px rgba(0,255,136,0.2), inset 0 0 10px rgba(0,255,136,0.05); }
+  50% { box-shadow: 0 0 30px rgba(0,255,136,0.5), inset 0 0 20px rgba(0,255,136,0.1); }
+}
+@keyframes pulse-border-red {
+  0%, 100% { box-shadow: 0 0 10px rgba(231,0,19,0.2), inset 0 0 10px rgba(231,0,19,0.05); }
+  50% { box-shadow: 0 0 30px rgba(231,0,19,0.5), inset 0 0 20px rgba(231,0,19,0.1); }
+}
+@keyframes spin3d {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.1); }
+  100% { transform: rotateY(360deg) scale(1); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes particles {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+/* Title animation */
+#page-home h1 {
+  animation: float 3s ease-in-out infinite, glow-gold 2.5s ease-in-out infinite !important;
+  background: linear-gradient(90deg, #FFD700, #fff, #FFD700, #FFA500, #FFD700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: float 3s ease-in-out infinite, shimmer 3s linear infinite !important;
+}
+/* Cards entrance animation */
+.home-btn {
+  animation: fadeInUp 0.6s ease both;
+}
+.home-btn:nth-child(1) { animation-delay: 0.1s; }
+.home-btn:nth-child(2) { animation-delay: 0.25s; }
+.home-btn:nth-child(3) { animation-delay: 0.4s; }
+/* Gold card pulse */
+.home-btn-gold { animation: pulse-border-gold 2.5s ease-in-out infinite !important; }
+.home-btn-green { animation: pulse-border-green 2.5s ease-in-out infinite !important; }
+.home-btn-red { animation: pulse-border-red 2.5s ease-in-out infinite !important; }
+/* Image 3D hover */
+.home-btn:hover .btn-icon {
+  animation: spin3d 0.7s ease forwards !important;
+  filter: drop-shadow(0 20px 40px rgba(255,215,0,0.8)) !important;
+}
+.home-btn-green:hover .btn-icon {
+  filter: drop-shadow(0 20px 40px rgba(0,255,136,0.8)) !important;
+}
+/* Subtitle shimmer */
+#page-home p {
+  background: linear-gradient(90deg, #555, #aaa, #555);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+/* Developer card subtle glow */
+#page-home > div[style*="bottom:20px"] {
+  animation: fadeInUp 1s ease 0.5s both;
+  transition: box-shadow 0.3s;
+}
+#page-home > div[style*="bottom:20px"]:hover {
+  box-shadow: 0 0 20px rgba(255,215,0,0.3) !important;
+}
+</style><style>
+@keyframes rotate3d {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+.btn-icon {
+  animation: rotate3d 4s linear infinite !important;
+  transform-style: preserve-3d;
+}
+.home-btn:hover .btn-icon {
+  animation: rotate3d 0.6s linear infinite !important;
+}
+</style></head>
+
+<body>
+
+
+
+
+
+
+
+<div id="prog-track"><div id="prog-bar"></div></div>
+
+
+
+<div id="page-home" style="display:none;width:100%;min-height:100vh;background:#0a0a0a;flex-direction:column;position:relative;z-index:1;;position:relative;;overflow-y:auto;">
+  <div style="position:absolute;inset:0;background-image:url('https://img.freepik.com/photos-premium/ballon-football-terrain_250422-501.jpg');background-size:cover;background-position:center;opacity:0.15;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;bottom:20px;left:20px;z-index:2;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.7);border:1px solid #333;border-radius:12px;padding:10px 16px;">
+    <img src="https://scontent.ftun4-2.fna.fbcdn.net/v/t39.30808-1/505574633_1302109074834583_8023426080045082039_n.jpg?stp=c68.0.800.800a_dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=0Hb9j1-bpDYQ7kNvwG6uFqL&_nc_oc=Adr42TvQF3eFsSPfOF6FdhyWO-8Su38vn-64Z7qLxS-73RBxtDLTTnba-5q77f9sn-g&_nc_zt=24&_nc_ht=scontent.ftun4-2.fna&_nc_gid=ivsoTXaZyLH4H3G85JV9QQ&_nc_ss=7b2a8&oh=00_Af-zXYwiiew_7M_d1ECNImId1Xt1sb0W4Zb43o7huCCzxQ&oe=6A2855E0" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #FFD700;">
+    <div>
+      <div style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:16px;font-weight:900;">RACHED ILAHI</div>
+      <div style="font-family:Barlow Condensed,sans-serif;color:#555;font-size:11px;letter-spacing:2px;">DEVELOPPEUR</div>
+      <div style="display:flex;gap:8px;margin-top:4px;">
+        <a href="https://www.instagram.com/rached.ilahi/" target="_blank" style="color:#E1306C;font-size:11px;text-decoration:none;">Instagram</a>
+        <a href="mailto:rached.ilahi@enicar.ucar.tn" style="color:#aaa;font-size:11px;text-decoration:none;">Email</a>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:40px;padding:80px 20px 100px;min-height:100vh;">
+    <div style="text-align:center;">
+      <h1 style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:70px;font-weight:900;letter-spacing:8px;text-transform:uppercase;text-shadow:0 0 30px rgba(255,215,0,0.3);">TAK TEK</h1>
+      <p style="font-family:Barlow Condensed,sans-serif;color:#777;font-size:18px;letter-spacing:4px;">2025 / 2026</p>
+    </div>
+    <div style="display:flex;gap:30px;flex-wrap:wrap;justify-content:center;">
+      <button onclick="startBestXI()" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #FFD700;border-radius:16px;color:#FFD700;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="background:linear-gradient(135deg,#1a1200,#2a1f00);border-radius:8px;padding:6px 20px;border-bottom:2px solid #FFD700;margin-bottom:4px;"><span style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:13px;font-weight:900;letter-spacing:3px;">MONDE</span></div>
+<img src="https://tse2.mm.bing.net/th/id/OIP.IVLQgNj1yYrd-UO710ihOgHaGQ?pid=Api&P=0&h=180" style="width:160px;height:140px;object-fit:contain;border-radius:12px;transition:transform 0.4s ease;filter:drop-shadow(0 10px 30px rgba(255,215,0,0.6));" class="btn-icon">
+        BEST XI
+        <span style="font-size:12px;color:#aaa;font-weight:400;letter-spacing:0;margin-top:6px;display:block;padding:0 10px;text-align:center;">Chaque fois 3 joueurs par poste, choisis 1 pour former ton equipe 2025/2026 et choisis le coach a la fin</span>
+      </button>
+      <button onclick="showPage('tierlist')" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #00ff88;border-radius:16px;color:#00ff88;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="background:linear-gradient(135deg,#001a0d,#002a15);border-radius:8px;padding:6px 20px;border-bottom:2px solid #00ff88;margin-bottom:4px;"><span style="font-family:Barlow Condensed,sans-serif;color:#00ff88;font-size:13px;font-weight:900;letter-spacing:3px;">MONDE</span></div>
+<img src="https://tse4.mm.bing.net/th/id/OIP.MlP5lDLcWPG0vdny3RILSQHaGA?pid=Api&P=0&h=180" style="width:160px;height:140px;object-fit:contain;border-radius:12px;transition:transform 0.4s ease;filter:drop-shadow(0 10px 30px rgba(0,255,136,0.6));" class="btn-icon">
+        TIER LIST
+        <span style="font-size:12px;color:#aaa;font-weight:400;letter-spacing:0;margin-top:6px;display:block;padding:0 10px;text-align:center;">24 joueurs a classer, 3 categories S A B, tu peux renommer chaque categorie</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div id="wrap" style="display:flex;flex-direction:row;width:100%;height:100vh;overflow:hidden;"><div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div>
+
+
+
+  <!-- LEFT PITCH -->
+
+  <div id="left" style="flex:1;height:100%;overflow:hidden;">
+
+    <div id="pitch-wrap">
+
+      <div id="pitch">
+
+        <svg viewBox="0 0 400 600" preserveAspectRatio="none">
+
+          <rect x="1" y="1" width="398" height="598" rx="7" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+
+          <line x1="1" y1="300" x2="399" y2="300" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+
+          <circle cx="200" cy="300" r="55" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+
+          <circle cx="200" cy="300" r="2.5" fill="rgba(255,255,255,0.5)"/>
+
+          <rect x="105" y="1" width="190" height="100" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
+
+          <rect x="155" y="1" width="90" height="40" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+          <rect x="170" y="0" width="60" height="10" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+
+          <rect x="105" y="499" width="190" height="100" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
+
+          <rect x="155" y="559" width="90" height="40" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+
+          <rect x="170" y="590" width="60" height="10" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+
+          <circle cx="200" cy="80" r="2.5" fill="rgba(255,255,255,0.4)"/>
+
+          <circle cx="200" cy="520" r="2.5" fill="rgba(255,255,255,0.4)"/>
+
+        </svg>
+
+        <div id="pitch-players"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- RIGHT SELECTION -->
+
+  <div id="right" style="width:420px;flex-shrink:0;height:100%;overflow-y:auto;background:#111;">
+
+    <div id="step-head">
+
+      <div id="step-num">1 / 12 — GOALKEEPER</div>
+
+      <div id="step-lbl">GARDIEN DE BUT</div>
+
+    </div>
+
+    <div id="cards"></div>
+
+    <div id="btn-zone">
+
+      <button id="btn-back" onclick="goBack()" style="width:100%;padding:10px;background:transparent;color:#FFD700;border:1px solid #FFD700;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:8px;">RETOUR</button><button id="btn-next" onclick="goNext()" style="width:100%;padding:10px;background:#FFD700;color:#000;border:none;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;cursor:pointer;">SUIVANT</button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- RIGHT RESULT -->
+
+  <div id="result">
+
+    <div id="res-head">
+
+      <h2>🏆 Ton Best XI</h2>
+
+      <p>2025 / 2026 — TON ÉQUIPE DE L'ANNÉE</p>
+
+    </div>
+
+    <div id="res-list"></div>
+
+    <div id="res-btns">
+
+      <button class="btn-g" onclick="shareTeam()">📤 PARTAGER</button>
+
+      <button class="btn-o" onclick="restart()">🔄 RECOMMENCER</button>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+<script>
+
+// ══════════════════════════════
+
+// DATA
+
+// ══════════════════════════════
+
+const STEPS = [
+
+  { key:'GK',    fr:'Gardien de But',    en:'GOALKEEPER'   },
+
+  { key:'RB',    fr:'Défenseur Droit',   en:'RIGHT BACK'   },
+
+  { key:'CB1',   fr:'Défenseur Central', en:'CENTER BACK'  },
+
+  { key:'CB2',   fr:'Défenseur Central', en:'CENTER BACK'  },
+
+  { key:'LB',    fr:'Défenseur Gauche',  en:'LEFT BACK'    },
+
+  { key:'CM1',   fr:'Milieu de Terrain', en:'MIDFIELDER'   },
+
+  { key:'CM2',   fr:'Milieu de Terrain', en:'MIDFIELDER'   },
+
+  { key:'CM3',   fr:'Milieu de Terrain', en:'MIDFIELDER'   },
+
+  { key:'LW',    fr:'Ailier Gauche',     en:'LEFT WING'    },
+
+  { key:'ST',    fr:'Avant-Centre',      en:'STRIKER'      },
+
+  { key:'RW',    fr:'Ailier Droit',      en:'RIGHT WING'   },
+
+  { key:'COACH', fr:'Entraîneur',        en:'COACH'        },
+
+];
+
+
+
+const POS = {
+
+  GK:   {l:'50%', t:'8%'},
+
+  RB:   {l:'82%', t:'24%'},
+
+  CB1:  {l:'63%', t:'27%'},
+
+  CB2:  {l:'37%', t:'27%'},
+
+  LB:   {l:'18%', t:'24%'},
+
+  CM1:  {l:'75%', t:'49%'},
+
+  CM2:  {l:'50%', t:'47%'},
+
+  CM3:  {l:'25%', t:'49%'},
+
+  LW:   {l:'18%', t:'71%'},
+
+  ST:   {l:'50%', t:'75%'},
+
+  RW:   {l:'82%', t:'71%'},
+
+  COACH:{l:'8%', t:'50%'},
+
+};
+
+
+
+const PLAYERS = {
+
+  GK:[
+
+    {id:'courtois', name:'Thibaut Courtois', club:'Real Madrid',     country:'Belgique',  flag:'🇧🇪', ini:'TC',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84078199.e5c5706b557be4718fbe2e3833198d021fc2d41f1bc58e10da8e369a79333186.webp'},
+
+    {id:'joangarcia',name:'Joan Garcia',     club:'Espanyol',        country:'Espagne',   flag:'🇪🇸', ini:'JG',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50591180.192526c374b1fa91ca4a3dccad86d31f40b66573c29aebae3e93d68f80ca8889.webp'},
+
+    {id:'raya',      name:'David Raya',      club:'Arsenal',         country:'Espagne',   flag:'🇪🇸', ini:'DR',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67329765.6bf637e0a1ab5b0c2c20c2b6d68875292934acc78e46658a6892ba07631999e0.webp'},
+
+  ],
+
+  RB:[
+
+    {id:'timber',  name:'Jurrien Timber',  club:'Arsenal',       country:'Pays-Bas', flag:'🇳🇱', ini:'JT',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100915101.1ab32d1ff00ea8a68850aa7443f2241ca03e0aa6cb94819810433ed1d67dacfc.webp'},
+
+    {id:'hakimi',  name:'Achraf Hakimi',   club:'PSG',           country:'Maroc',    flag:'🇲🇦', ini:'AH',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50566860.fade73fb0f5a0a63e94d7a607437e4f2c92db7ae0d9b38e81b732ca1f448bb21.webp'},
+
+    {id:'cancelo', name:'Joao Cancelo',    club:'Barcelona',     country:'Portugal', flag:'🇵🇹', ini:'JC',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84096594.88f74b710f690ad204bbb503a30a7651328652e395f26df1674e8045cea977d3.webp'},
+
+  ],
+
+  CB1:[
+
+    {id:'upamecano',name:'Upamecano',       club:'Bayern Munich', country:'France',   flag:'🇫🇷', ini:'DU',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67338422.4c82170218d1a9eea8a973df3216d56023d45f4e88ddccc10a9d31e9da405042.webp'},
+
+    {id:'saliba',   name:'William Saliba',  club:'Arsenal',       country:'France',   flag:'🇫🇷', ini:'WS',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84129795.d54c7fcddc9e480ba8abeccda4795ad1a44f7a25401c4ea0815515ed8d5da120.webp'},
+
+    {id:'magalhaes',name:'G. Magalhães',    club:'Arsenal',       country:'Brésil',   flag:'🇧🇷', ini:'GM',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84118660.d679fe0a0daea22b9ff1b386c17b8763f18f73d4898ede7ee43db48c263fa0bc.webp'},
+
+  ],
+
+  CB2:[
+
+    {id:'pacho',    name:'Willian Pacho',   club:'PSG',           country:'Équateur', flag:'🇪🇨', ini:'WP',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134473924.dad470fdc80a5719d01001024413f3af25f3879d65b0fe1a9a1f124a799f3018.webp'},
+
+    {id:'bastoni',  name:'A. Bastoni',      club:'Inter Milan',   country:'Italie',   flag:'🇮🇹', ini:'AB',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50569031.40be7a999d876d7e3228f8e016ac7ae7aa4436002d4323aabd0aefb86f60fcb2.webp'},
+
+    {id:'marquinhos',name:'Marquinhos',     club:'PSG',           country:'Brésil',   flag:'🇧🇷', ini:'MQ',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100871161.1b2d48d47ec2ef60216f77b7050a27d7c7e52f88c67943b23cc202eb96344ab1.webp'},
+
+  ],
+
+  LB:[
+
+    {id:'mendes',  name:'Nuno Mendes',    club:'PSG',           country:'Portugal', flag:'🇵🇹', ini:'NM',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50583793.018f2b3045958694656e660739cb16b535aaae45da7181b5c8c0ea090139e6ba.webp'},
+
+    {id:'oreilly', name:"Nico O'Reilly",  club:'Man City',      country:'Irlande',  flag:'🇮🇪', ini:'NO',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100940723.20b83f70309b5a99cce4d92cc92e9967479ae70d5d00622214ab088d3ef9ef35.webp'},
+
+    {id:'laimer',  name:'Konrad Laimer',  club:'Bayern Munich', country:'Autriche', flag:'🇦🇹', ini:'KL',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67334239.8b3b51951d44149e19bed40d6e8391762b1d8abd7dbb1c8b03b70697b45d9bfa.webp'},
+
+  ],
+
+  CM1:[
+
+    {id:'rice',       name:'Declan Rice',     club:'Arsenal',        country:'Angleterre',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',ini:'DR',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134452106.d29385a46adb11fece5047fcc6f1e7f5927a2f03cbb8ab0db17acf72982592f2.webp'},
+
+    {id:'pedri',      name:'Pedri',            club:'Barcelona',      country:'Espagne',   flag:'🇪🇸', ini:'PE',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100915150.017c33d1db71b508743f808e084a4abc8b0f567bd0fde7da2d8a9bfd3532e388.webp'},
+
+    {id:'bfernandes', name:'Bruno Fernandes',  club:'Man United',     country:'Portugal',  flag:'🇵🇹', ini:'BF',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134429926.9bbff74248c676583799bfa5a6f276a8d3bb07c5176b5241f2644f69211e18cb.webp'},
+
+  ],
+
+  CM2:[
+
+    {id:'szoboszlai',name:'Szoboszlai',    club:'Liverpool',      country:'Hongrie',  flag:'🇭🇺', ini:'DS',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100900068.21c5fd38e909895ece62ef99a4d1473004cd35715c627407646859b067a4b1bf.webp'},
+
+    {id:'griezmann', name:'Nicolas Paz',     club:'Man City',country:'France',   flag:'🇫🇷', ini:'AG',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-117718358.48dabd090b262169bfed72ebf342ef697d8fefa90eabc501254bfcc05346a77f.webp'},
+
+    {id:'vitinha',   name:'Vitinha',       club:'PSG',            country:'Portugal', flag:'🇵🇹', ini:'VI',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-117695765.cd891a014c5ac738f9a73c7f422fc63539645281b4c0d9827b5ce208cca93350.webp'},
+
+  ],
+
+  CM3:[
+
+    {id:'kimmich', name:'Joshua Kimmich', club:'Bayern Munich', country:'Allemagne', flag:'????', ini:'JK',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84098702.067a7aede7118d1912f50e7a22579514ef1b5e8c79a6a95027edd6302718c863.webp'},
+
+    {id:'jneves',  name:'Joao Neves',   club:'PSG',            country:'Portugal', flag:'🇵🇹', ini:'JN',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134490562.95b794784502769d6c8dcf5b053f50e9249d0471da0845f7058961132a29f69a.webp'},
+
+    {id:'cherki',  name:'Rayan Cherki', club:'Man City',       country:'France',   flag:'🇫🇷', ini:'RC',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84137650.1acbd14c4e19581ae18f01e3ed1c8b886a353a28adba3f60a94db54a21239025.webp'},
+
+  ],
+
+  LW:[
+
+    {id:'dembele', name:'O. Dembélé',    club:'PSG',           country:'France',  flag:'🇫🇷', ini:'OD',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-168003603.cbfe0dcd09387bb6ec3d823de0c63aa6da3d59dbf9ce15c012c79d3c56c40c76.webp'},
+
+    {id:'olise',   name:'Michael Olise', club:'Bayern Munich', country:'France',  flag:'🇫🇷', ini:'MO',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-151242771.4dbb347cc5f447f1f6a5880a8d68348252502d08f2be3fed5e21bf65b3773244.webp'},
+
+    {id:'yamal',   name:'Lamine Yamal',  club:'Barcelona',     country:'Espagne', flag:'🇪🇸', ini:'LY',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134495371.d700f06a7970dc1a4c57c3babce96ef8d6b45164014d95838d3d98f43c51ba6e.webp'},
+
+  ],
+
+  ST:[
+
+    {id:'kane',    name:'Harry Kane',    club:'Bayern Munich', country:'Angleterre',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',ini:'HK',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-201528718.cf4a0b65af2e67dd0fcd3370698e35956e6708d0ee06fcb2a200187a6681b8b3.webp'},
+
+    {id:'mbappe',  name:'Kylian Mbappé', club:'Real Madrid',   country:'France',   flag:'🇫🇷', ini:'KM',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-151226691.acc9bbcc051380e1c3d2e41e89e89a3604164365a6d12c4e80e3c5dca1d8947d.webp'},
+
+    {id:'haaland', name:'Erling Haaland',club:'Man City',      country:'Norvège',  flag:'🇳🇴', ini:'EH',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84125165.6ad4f2fa1898fac010a9e80cd7654cda9dfd6f983c7ac97d076889bc7c43dbef.webp'},
+
+  ],
+
+  RW:[
+
+    {id:'kvara',    name:'Kvaratskhelia', club:'PSG',        country:'Géorgie', flag:'🇬🇪', ini:'KK',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84133715.e2bbdb402efd34209082da3bd4899f3306138207bce0e84da333b2c5ca39addd.webp'},
+
+    {id:'vinicius', name:'Vinícius Jr',   club:'Real Madrid',country:'Brésil',  flag:'🇧🇷', ini:'VJ',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84124874.85bfa42f8435701db0581d510b973d3d02bbc315217ad218f81bd5bc680a4dd1.webp'},
+
+    {id:'raphinha', name:'Raphinha',      club:'Barcelona',  country:'Brésil',  flag:'🇧🇷', ini:'RA',
+
+     img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84119499.2725ecb010d4476417a1cb6e4c4db72eca67e96fada52c9851c501b8f3a1f0af.webp'},
+
+  ],
+
+  COACH:[
+
+    {id:'luisenrique',name:'Luis Enrique', club:'PSG',       country:'Espagne',   flag:'🇪🇸', ini:'LE',
+
+     img:'https://tse4.mm.bing.net/th?id=OIF.BwvBuaepCwQ0%2b0vIvuvqIw&pid=Api&P=0&h=180'},
+
+    {id:'flick',      name:'Hansi Flick',  club:'Barcelona', country:'Allemagne', flag:'🇩🇪', ini:'HF',
+
+     img:'https://media.cnn.com/api/v1/images/stellar/prod/01jd374k9mfg1d42nn027sha2a.jpg?c=16x9&q=h_833,w_1480,c_fill'},
+
+    {id:'arteta',     name:'Mikel Arteta', club:'Arsenal',   country:'Espagne',   flag:'🇪🇸', ini:'MA',
+
+     img:'https://d2x51gyc4ptf2q.cloudfront.net/content/uploads/2025/02/06201937/Mikel-Arteta-Arsenal-F365-5-1320x742.jpg'},
+
+  ],
+
+};
+
+
+
+// ══════════════════════════════
+
+// STATE
+
+// ══════════════════════════════
+
+let step = 0;
+
+let picks = {};
+
+
+
+// ══════════════════════════════
+
+// INIT
+
+// ══════════════════════════════
+
+function init() { showPage("home"); return; } function init_old() {
+
+  buildPitch();
+
+  renderStep();
+
+}
+
+
+
+function buildPitch() {
+
+  const container = document.getElementById('pitch-players');
+
+  container.innerHTML = '';
+
+  STEPS.forEach(s => {
+
+    const p = POS[s.key];
+
+    const slot = document.createElement('div');
+
+    slot.className = 'pslot';
+
+    slot.id = 'slot-' + s.key;
+
+    slot.style.left = p.l;
+
+    slot.style.top  = p.t;
+
+    slot.innerHTML = `
+
+      <div class="pcircle empty" id="circ-${s.key}">
+
+        <div class="pfallback" id="fb-${s.key}" style="display:flex">
+
+          <span style="font-size:8px;color:rgba(255,255,255,0.3)">${s.key==='COACH'?'🎽':s.key}</span>
+
+        </div>
+
+      </div>
+
+      <div class="pname" id="pn-${s.key}"></div>
+
+    `;
+
+    container.appendChild(slot);
+
+  });
+
+}
+
+
+
+function renderStep() {
+
+  const s = STEPS[step];
+
+  const total = STEPS.length;
+
+
+
+  document.getElementById('prog-bar').style.width = (step / total * 100) + '%';
+
+  document.getElementById('step-num').textContent = `${step+1} / ${total} — ${s.en}`;
+
+  document.getElementById('step-lbl').textContent = s.fr.toUpperCase();
+
+
+
+  // highlight active slot
+
+  document.querySelectorAll('.pcircle.empty').forEach(c => c.classList.remove('active-empty'));
+
+  const ac = document.getElementById('circ-' + s.key);
+
+  if (ac && ac.classList.contains('empty')) ac.classList.add('active-empty');
+
+
+
+  // render cards
+
+  const box = document.getElementById('cards');
+
+  box.innerHTML = '';
+
+  PLAYERS[s.key].forEach(pl => {
+
+    const isSel = picks[s.key]?.id === pl.id;
+
+    const div = document.createElement('div');
+
+    div.className = 'card' + (isSel ? ' sel' : '');
+
+    div.onclick = () => pick(pl);
+
+    div.innerHTML = `
+
+      <div class="card-ava">
+
+        <img src="${pl.img}" alt="${pl.name}"
+
+             onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'pfallback\\'>${pl.ini}</div>')">
+
+      </div>
+
+      <div class="card-info">
+
+        <div class="card-name">${pl.name}</div>
+
+        <div class="card-club">${pl.club}</div>
+
+        <div class="card-ctry">${pl.flag} ${pl.country}</div>
+
+      </div>
+
+      ${isSel ? '<div class="card-chk">✓</div>' : ''}
+
+    `;
+
+    box.appendChild(div);
+
+  });
+
+
+
+  document.getElementById('btn-next').disabled = !picks[s.key];
+
+}
+
+
+
+function pick(pl) {
+
+  const s = STEPS[step];
+
+  picks[s.key] = pl;
+
+  updatePitch(s.key, pl);
+
+  renderStep();
+
+  setTimeout(() => {
+
+    if (step < STEPS.length - 1) { step++; renderStep(); }
+
+    else showResult();
+
+  }, 480);
+
+}
+
+
+
+function updatePitch(key, pl) {
+
+  const circ = document.getElementById('circ-' + key);
+
+  const pn   = document.getElementById('pn-' + key);
+
+  if (!circ) return;
+
+  circ.className = 'pcircle filled popin';
+
+  circ.innerHTML = `
+
+    <img src="${pl.img}" alt="${pl.name}"
+
+         onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'pfallback\\'>${pl.ini}</div>')">
+
+  `;
+
+  pn.textContent = pl.name;
+
+  pn.classList.add('show');
+
+  setTimeout(() => circ.classList.remove('popin'), 450);
+
+}
+
+
+
+function goNext() {
+
+  if (!picks[STEPS[step].key]) return;
+
+  if (step < STEPS.length - 1) { step++; renderStep(); }
+
+  else showResult();
+
+}
+
+
+
+function showResult() {
+
+  document.getElementById('prog-bar').style.width = '100%';
+
+  document.getElementById('right').style.display  = 'none';
+
+  const res = document.getElementById('result');
+
+  res.style.display = 'flex';
+
+  const list = document.getElementById('res-list');
+
+  list.innerHTML = '';
+
+  STEPS.forEach(s => {
+
+    const pl = picks[s.key]; if (!pl) return;
+
+    const d = document.createElement('div');
+
+    d.className = 'ri';
+
+    d.innerHTML = `
+
+      <div class="ri-ava">
+
+        <img src="${pl.img}" alt="${pl.name}"
+
+             onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'pfallback\\'>${pl.ini}</div>')">
+
+      </div>
+
+      <div class="ri-info">
+
+        <span class="ri-pos">${s.en}</span>
+
+        <span class="ri-name">${pl.name}</span>
+
+        <span class="ri-club">${pl.flag} ${pl.club}</span>
+
+      </div>`;
+
+    list.appendChild(d);
+
+  });
+
+}
+
+
+
+function restart() {
+
+  step = 0; picks = {};
+
+  document.getElementById('right').style.display  = 'flex';
+
+  document.getElementById('result').style.display = 'none';
+
+  buildPitch(); renderStep();
+
+}
+
+
+
+function shareTeam() {
+
+  const txt = '⚽ Mon Best XI 2025/2026\n\n' +
+
+    STEPS.map(s => `${s.en}: ${picks[s.key]?.name||'?'}`).join('\n') +
+
+    '\n\n#BestXI2026';
+
+  if (navigator.share) navigator.share({title:'Best XI 2025/2026', text:txt});
+
+  else navigator.clipboard.writeText(txt).then(()=>alert('Copié !'));
+
+}
+
+
+
+function goBack() {
+  if (step === 0) return;
+  step--;
+  var key = STEPS[step].key;
+  delete picks[key];
+  var circ = document.getElementById("circ-" + key);
+  var pn = document.getElementById("pn-" + key);
+  if (circ) { circ.className = "pcircle empty"; circ.innerHTML = ""; }
+  if (pn) { pn.textContent = ""; pn.classList.remove("show"); }
+  renderStep();
+}
+function startBestXI() { showPage("bestxi"); if(typeof step!=="undefined"){step=0;picks={};buildPitch();renderStep();} }
+document.addEventListener("DOMContentLoaded", init);
+function showPage(page) {
+  var hbtn = document.getElementById("home-nav-btn");
+  if(hbtn) hbtn.style.display = page==="home" ? "none" : "block";
+  var fixedBtns = document.querySelectorAll('div[style*="position:fixed"]');
+  var home = document.getElementById("page-home");
+  var wrap = document.getElementById("wrap");
+  var tier = document.getElementById("page-tierlist");
+  if(home) home.style.display = page==="home" ? "flex" : "none";
+  if(wrap) wrap.style.display = page==="bestxi" ? "flex" : "none";
+  if(tier) tier.style.display = page==="tierlist" ? "flex" : "none";
+  if(page==="tierlist" && document.getElementById("player-pool") && document.getElementById("player-pool").children.length===0) initTierList();
+}
+
+</script>
+
+
+<div id="page-transfers-good" style="display:none;width:100%;min-height:calc(100vh - 61px);background:#0a0a0a;padding:30px;flex-direction:column;">
+  <div style="flex:1;min-width:300px;">
+    <h2 style="font-family:'Barlow Condensed',sans-serif;color:#FFD700;font-size:28px;letter-spacing:3px;margin-bottom:20px;">?? TOP 10 MEILLEURS TRANSFERTS</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;" id="good-transfers">
+      <div style="background:#161616;border:1px solid #FFD700;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">1</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Lamine Yamal ? Barcelona</span><span style="color:#00ff88;margin-left:auto;">? Excellent</span></div>
+      <div style="background:#161616;border:1px solid #FFD700;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">2</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Kvaratskhelia ? PSG</span><span style="color:#00ff88;margin-left:auto;">? Excellent</span></div>
+      <div style="background:#161616;border:1px solid #FFD700;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">3</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Joao Neves ? PSG</span><span style="color:#00ff88;margin-left:auto;">? Excellent</span></div>
+      <div style="background:#161616;border:1px solid #FFD700;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">4</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Michael Olise ? Bayern Munich</span><span style="color:#00ff88;margin-left:auto;">? Excellent</span></div>
+      <div style="background:#161616;border:1px solid #FFD700;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">5</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">William Saliba ? Arsenal</span><span style="color:#00ff88;margin-left:auto;">? Excellent</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">6</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Declan Rice ? Arsenal</span><span style="color:#00ff88;margin-left:auto;">? Bon</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">7</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Vitinha ? PSG</span><span style="color:#00ff88;margin-left:auto;">? Bon</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">8</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Achraf Hakimi ? PSG</span><span style="color:#00ff88;margin-left:auto;">? Bon</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">9</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Harry Kane ? Bayern Munich</span><span style="color:#00ff88;margin-left:auto;">? Bon</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#FFD700;font-weight:900;font-size:18px;">10</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Pedri ? Barcelona</span><span style="color:#00ff88;margin-left:auto;">? Bon</span></div>
+    </div>
+</div>
+<div id="page-transfers-bad" style="display:none;width:100%;min-height:calc(100vh - 61px);background:#0a0a0a;padding:30px;flex-direction:column;">
+  <div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;color:#ff4444;font-size:28px;letter-spacing:3px;margin-bottom:20px;">? TOP 10 MAUVAIS TRANSFERTS</h2>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="background:#161616;border:1px solid #ff4444;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">1</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Mbapp� ? Real Madrid</span><span style="color:#ff4444;margin-left:auto;">?? Flop</span></div>
+      <div style="background:#161616;border:1px solid #ff4444;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">2</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Cancelo ? Barcelona</span><span style="color:#ff4444;margin-left:auto;">?? Flop</span></div>
+      <div style="background:#161616;border:1px solid #ff4444;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">3</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Upamecano ? Bayern Munich</span><span style="color:#ff4444;margin-left:auto;">?? Flop</span></div>
+      <div style="background:#161616;border:1px solid #ff4444;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">4</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Bruno Fernandes ? Man United</span><span style="color:#ff4444;margin-left:auto;">?? Flop</span></div>
+      <div style="background:#161616;border:1px solid #ff4444;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">5</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Griezmann ? Atletico Madrid</span><span style="color:#ff4444;margin-left:auto;">?? Flop</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">6</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Laimer ? Bayern Munich</span><span style="color:#ff8800;margin-left:auto;">?? Moyen</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">7</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Szoboszlai ? Liverpool</span><span style="color:#ff8800;margin-left:auto;">?? Moyen</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">8</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Pacho ? PSG</span><span style="color:#ff8800;margin-left:auto;">?? Moyen</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">9</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Marquinhos ? PSG</span><span style="color:#ff8800;margin-left:auto;">?? Moyen</span></div>
+      <div style="background:#161616;border:1px solid #333;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;"><span style="color:#ff4444;font-weight:900;font-size:18px;">10</span><span style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;">Nuno Mendes ? PSG</span><span style="color:#ff8800;margin-left:auto;">?? Moyen</span></div>
+    </div>
+  </div>
+</div>
+<div id="page-dev" style="display:none;width:100%;min-height:calc(100vh - 61px);background:#0a0a0a;padding:40px;justify-content:center;align-items:center;">
+  <div style="background:#161616;border:1px solid #FFD700;border-radius:16px;padding:40px;max-width:500px;width:100%;text-align:center;">
+    <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#FF6B35,#00B4D8);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:32px;">?????</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;color:#FFD700;font-size:32px;letter-spacing:3px;margin-bottom:8px;">D�VELOPPEUR</h2>
+    <p style="color:#555;font-size:12px;letter-spacing:2px;margin-bottom:30px;">BEST XI 2025/2026</p>
+    <div style="border-top:1px solid #222;padding-top:24px;display:flex;flex-direction:column;gap:14px;text-align:left;">
+      <div style="display:flex;justify-content:space-between;"><span style="color:#555;font-size:13px;">Nom</span><span style="color:#fff;font-weight:600;">Rached</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:#555;font-size:13px;">Projet</span><span style="color:#FFD700;font-weight:600;">Best XI 2025/2026</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:#555;font-size:13px;">Technologies</span><span style="color:#fff;font-weight:600;">HTML � CSS � JavaScript</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:#555;font-size:13px;">Outils</span><span style="color:#fff;font-weight:600;">VS Code � Claude AI</span></div>
+      <div style="display:flex;justify-content:space-between;"><span style="color:#555;font-size:13px;">Version</span><span style="color:#00ff88;font-weight:600;">v2.0 � 2026</span></div>
+    </div>
+  </div>
+</div>
+<div style=\"display:flex;gap:10px;align-items:stretch;\"><div contenteditable=\"true\" style=\"width:80px;min-height:80px;background:#ff8800;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;border-radius:8px;\">A</div><div id=\"tier-orange\" ondragover=\"event.preventDefault()\" ondrop=\"drop(event,this)\" style=\"flex:1;min-height:80px;background:#161616;border:2px dashed #ff8800;border-radius:8px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;\"></div></div><div style=\"display:flex;gap:10px;align-items:stretch;\"><div contenteditable=\"true\" style=\"width:80px;min-height:80px;background:#ff4444;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;border-radius:8px;\">B</div><div id=\"tier-red\" ondragover=\"event.preventDefault()\" ondrop=\"drop(event,this)\" style=\"flex:1;min-height:80px;background:#161616;border:2px dashed #ff4444;border-radius:8px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;\"></div></div></div></div></div></div>
+</div></div>
+</div><div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;" id="home-btn-tier"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div><div id="page-tierlist" style="display:none;width:100%;min-height:calc(100vh - 61px);background:#0a0a0a;padding:30px;flex-direction:column;gap:20px;;overflow-y:auto;">
+  <h2 style="font-family:'Barlow Condensed',sans-serif;color:#FFD700;font-size:32px;letter-spacing:3px;">TIER LIST TRANSFERTS 2025/2026</h2>
+  <p style="color:#555;margin-bottom:10px;">Glisse les joueurs dans les categories. Clique sur S / A / B pour renommer.</p>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div style="display:flex;gap:10px;align-items:stretch;">
+      <div contenteditable="true" style="width:80px;min-height:80px;background:#00c853;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;border-radius:8px;cursor:text;text-align:center;">S</div>
+      <div id="tier-green" ondragover="event.preventDefault()" ondrop="drop(event,this)" style="flex:1;min-height:80px;background:#161616;border:2px dashed #00c853;border-radius:8px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;"></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:stretch;">
+      <div contenteditable="true" style="width:80px;min-height:80px;background:#ff8800;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;border-radius:8px;cursor:text;text-align:center;">A</div>
+      <div id="tier-orange" ondragover="event.preventDefault()" ondrop="drop(event,this)" style="flex:1;min-height:80px;background:#161616;border:2px dashed #ff8800;border-radius:8px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;"></div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:stretch;">
+      <div contenteditable="true" style="width:80px;min-height:80px;background:#ff4444;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;border-radius:8px;cursor:text;text-align:center;">B</div>
+      <div id="tier-red" ondragover="event.preventDefault()" ondrop="drop(event,this)" style="flex:1;min-height:80px;background:#161616;border:2px dashed #ff4444;border-radius:8px;display:flex;flex-wrap:wrap;gap:8px;padding:8px;"></div>
+    </div>
+  </div>
+  <div id="player-pool" ondragover="event.preventDefault()" ondrop="drop(event,this)" style="margin-top:20px;background:#111;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;min-height:80px;border:2px dashed #333;"></div></div></div><script>var tierPlayers = [
+  {name:"Donnarumma", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100893917.d1c4e82d55d58ac2f299dbe32a7a51cbbfd19e679ef4ce2a4918575a2362112e.webp"},
+  {name:"Senne Lammens", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67363667.4fd6223aef93dedfa89540b72f4cd093e327c04acadb6e705447118d3183beb2.webp"},
+  {name:"Joan Garcia", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50591180.192526c374b1fa91ca4a3dccad86d31f40b66573c29aebae3e93d68f80ca8889.webp"},
+  {name:"Viktor Gyokeres", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67350515.e5bef92f3aac4cde6f927e15da72557943ca6e0e00d73c1f136c9ab219457906.webp"},
+  {name:"Tah", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67322195.fe62acf5ea0f57036c2683bc1726909358e105baa04df2bdbfad4f4406dd57d5.webp"},
+  
+  {name:"Rayan Cherki", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84137650.1acbd14c4e19581ae18f01e3ed1c8b886a353a28adba3f60a94db54a21239025.webp"},
+  {name:"Ademola Lookman", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50562547.0f9645c61d649dd4d5562cae4cf38cdd18abc9dc5b3d8d124fe3c340a8e226fb.webp"},
+  {name:"Piero Hincapie", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67365061.026190ba71069ddaa4815a192850f337270b6332b9109202ceafeb8cfe3719ae.webp"},
+  {name:"Ekitike", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-117697801.c539b4a8ce047b89c2889db38d43011deebf6abd5357911afeaf2ff9588633a8.webp"},
+  {name:"Luis Diaz", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-151236028.827bba905a03f1f469ac72d0dd6cf88fc0f097d88e52d95869acd2d4ca0ad21e.webp"},
+  
+  {name:"Cunha", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67349107.83497028afbd80813f8f175e86ade2010a5f24ad25596fe963235bdb8ae13753.webp"},
+  {name:"Mboumo", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50574662.7ce3260302e06743eb87c1b4a4967da96caecebb7c8584a5ff750a985fb6da14.webp"},
+  
+  
+  
+  {name:"Eberechi Eze", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100899090.e5f552266dd1752d499f87730bf63653dba7b66e1ff81c52f5a6fb1f2e4bfa73.webp"},
+  
+  {name:"Alvaro Carreras", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50600537.d88469740e36775d1ca7e461ea80917e662e87375bfe13cd170c9eb30b6c141f.webp"},{name:"Joao Cancelo", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84096594.88f74b710f690ad204bbb503a30a7651328652e395f26df1674e8045cea977d3.webp"},{name:"Estevao", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67185551.37b89cf22fd211dc531985816b040adb29728b5ee292e9df77bb776894bbd18a.webp"},{name:"Alejandro Garnacho", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67377302.9150a92ac3e210c6dde38ad03daa22e3087be3839481e596dd2c9ef7c6f17345.webp"},{name:"Jeremie Frimpong", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67362013.fd0283e927db7da25587f7d62fd89a0289798b0d98df19096dc4b46261d9edc3.webp"},{name:"Hugo Ekitike", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-117697801.c539b4a8ce047b89c2889db38d43011deebf6abd5357911afeaf2ff9588633a8.webp"},{name:"Florian Wirtz", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84142710.0b5586b9d1fe9c69fe20d09665834d107c605ccf0948753b80f5f2047574c0ba.webp"},{name:"Alexander Isak", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67342595.9a9f8e512892b784b5b0f37ad7f16c149154c8a82c361bdd7712f406c453a59c.webp"},{name:"Franco Mastantuono", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50610821.1a2a553e8b4001d43d37fd7de28ad6664617ba6484f8c1c4f181e3fc623f2007.webp"}
+];
+function makeCard(p, isFirst) { var size = isFirst ? "90px" : "60px"; var hsize = isFirst ? "126px" : "84px";
+  var d = document.createElement("div");
+  d.draggable = true;
+  d.style.cssText = "display:flex;flex-direction:column;align-items:center;gap:4px;cursor:grab;user-select:none;";
+  var img = document.createElement("img");
+  img.src = p.img;
+  img.style.cssText = "width:"+size+";height:"+hsize+";object-fit:contain;border-radius:6px;";
+  var name = document.createElement("div");
+  name.textContent = p.name;
+  name.style.cssText = "color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;text-align:center;max-width:70px;";
+  d.appendChild(img);
+  d.appendChild(name);
+  d.addEventListener("dragstart", function(e){ e.dataTransfer.setData("text", p.name); d.style.opacity="0.4"; });
+  d.addEventListener("dragend", function(){ d.style.opacity="1"; });
+  return d;
+}
+function initTierList() {
+  var pool = document.getElementById("player-pool");
+  if (!pool || pool.children.length > 0) return;
+  tierPlayers.forEach(function(p){ pool.appendChild(makeCard(p)); });
+}
+function drop(e, target) {
+  e.preventDefault();
+  var name = e.dataTransfer.getData("text");
+  var player = tierPlayers.find(function(p){ return p.name === name; });
+  if (!player) return;
+  document.querySelectorAll("[draggable]").forEach(function(d){ if(d.querySelector && d.querySelector("div") && d.querySelector("div").textContent === name) d.remove(); });
+  target.appendChild(makeCard(player, false));
+}
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
