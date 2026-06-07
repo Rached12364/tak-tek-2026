@@ -1,0 +1,5 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+idx = content.find('quiz-question-container')
+print('quiz-question-container position:', idx)
+idx2 = content.find('quiz-question-view')
+print('quiz-question-view position:', idx2)

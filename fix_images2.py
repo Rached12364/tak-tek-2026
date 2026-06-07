@@ -1,0 +1,7 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+content = content.replace('firas_chaouat.jpg', 'firas2.png')
+content = content.replace('youssef_msakni.jpg', 'msakni.png')
+content = content.replace('faouzi_benzarti2.png', 'faouzi3.png')
+content = content.replace('youcef_belaili.jpg', 'blaili2.png')
+open('index.html','w',encoding='utf-8').write(content)
+print('OK')

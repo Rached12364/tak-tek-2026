@@ -1,7 +1,5 @@
 ﻿content = open('index.html','r',encoding='utf-8').read()
-quiz_script = '''      </div>
-  </div>
-</div>
+quiz_script = '''
 <script>
 var quizData = {
   chaouat: {
@@ -136,14 +134,13 @@ function showQuizResult() {
     "<div style=\\"font-size:60px;margin-bottom:10px;\\">" + (pct>=80?"🏆":pct>=50?"⭐":"💪") + "</div>" +
     "<div style=\\"color:#00C853;font-size:36px;font-weight:900;\\">" + msg + "</div>" +
     "<div style=\\"color:#fff;font-size:24px;margin:16px 0;\\">" + quizScore + " / " + total + "</div>" +
-    "<button onclick=\\"showPage(\\'quiz-list\\')\\" style=\\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;margin-top:10px;\\">RETOUR</button>" +
+    "<button onclick=\\"showPage('quiz-list')\\" style=\\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;margin-top:10px;\\">RETOUR</button>" +
     "</div>";
   document.getElementById("quiz-progress").textContent = "Termine !";
   document.getElementById("quiz-score-display").textContent = "Score final: " + quizScore + "/" + total;
 }
 </script>
-</body>
-</html>'''
-content = content + quiz_script
+'''
+content = content.replace('</body>', quiz_script + '</body>')
 open('index.html','w',encoding='utf-8').write(content)
-print('OK - Taille:', len(content))
+print('OK')

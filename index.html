@@ -623,6 +623,85 @@
 .tn-slot-active {
   animation: tn-slot-glow 1.5s ease infinite;
 }
+
+@keyframes quiz-fadein {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes quiz-pop {
+  0%   { transform:scale(0.8); opacity:0; }
+  70%  { transform:scale(1.05); }
+  100% { transform:scale(1); opacity:1; }
+}
+@keyframes quiz-shake {
+  0%,100% { transform:translateX(0); }
+  20%     { transform:translateX(-8px); }
+  40%     { transform:translateX(8px); }
+  60%     { transform:translateX(-6px); }
+  80%     { transform:translateX(6px); }
+}
+@keyframes quiz-correct {
+  0%   { box-shadow:0 0 0px #00C853; }
+  50%  { box-shadow:0 0 30px #00C853, 0 0 60px rgba(0,200,83,0.4); }
+  100% { box-shadow:0 0 0px #00C853; }
+}
+@keyframes quiz-card-hover {
+  from { transform:translateY(0); box-shadow:none; }
+  to   { transform:translateY(-6px); box-shadow:0 8px 30px rgba(0,200,83,0.3); }
+}
+#quiz-list-view { animation: quiz-fadein 0.5s ease both; }
+#quiz-panel { animation: quiz-fadein 0.4s ease both; }
+.quiz-player-card {
+  background:#111;
+  border:2px solid #333;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  z-index:1;
+}
+.quiz-player-card:hover {
+  border-color:#00C853;
+  transform:translateY(-6px);
+  box-shadow:0 8px 30px rgba(0,200,83,0.3);
+}
+.quiz-btn-vrai {
+  padding:16px;
+  background:#1a3a1a;
+  border:2px solid #00C853;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-vrai:hover { background:#00C853; color:#000; transform:scale(1.03); }
+.quiz-btn-faux {
+  padding:16px;
+  background:#3a1a1a;
+  border:2px solid #E70013;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-faux:hover { background:#E70013; color:#fff; transform:scale(1.03); }
+.quiz-correct-anim { animation: quiz-correct 0.6s ease; }
+.quiz-wrong-anim { animation: quiz-shake 0.5s ease; }
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style>
 
 <style>
@@ -676,6 +755,10 @@
 /* Cards entrance animation */
 .home-btn {
   animation: fadeInUp 0.6s ease both;
+  transition: transform 0.2s ease;
+}
+.home-btn:hover {
+  transform: scale(1.05) !important;
 }
 .home-btn:nth-child(1) { animation-delay: 0.1s; }
 .home-btn:nth-child(2) { animation-delay: 0.25s; }
@@ -736,6 +819,85 @@
 .tn-slot-active {
   animation: tn-slot-glow 1.5s ease infinite;
 }
+
+@keyframes quiz-fadein {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes quiz-pop {
+  0%   { transform:scale(0.8); opacity:0; }
+  70%  { transform:scale(1.05); }
+  100% { transform:scale(1); opacity:1; }
+}
+@keyframes quiz-shake {
+  0%,100% { transform:translateX(0); }
+  20%     { transform:translateX(-8px); }
+  40%     { transform:translateX(8px); }
+  60%     { transform:translateX(-6px); }
+  80%     { transform:translateX(6px); }
+}
+@keyframes quiz-correct {
+  0%   { box-shadow:0 0 0px #00C853; }
+  50%  { box-shadow:0 0 30px #00C853, 0 0 60px rgba(0,200,83,0.4); }
+  100% { box-shadow:0 0 0px #00C853; }
+}
+@keyframes quiz-card-hover {
+  from { transform:translateY(0); box-shadow:none; }
+  to   { transform:translateY(-6px); box-shadow:0 8px 30px rgba(0,200,83,0.3); }
+}
+#quiz-list-view { animation: quiz-fadein 0.5s ease both; }
+#quiz-panel { animation: quiz-fadein 0.4s ease both; }
+.quiz-player-card {
+  background:#111;
+  border:2px solid #333;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  z-index:1;
+}
+.quiz-player-card:hover {
+  border-color:#00C853;
+  transform:translateY(-6px);
+  box-shadow:0 8px 30px rgba(0,200,83,0.3);
+}
+.quiz-btn-vrai {
+  padding:16px;
+  background:#1a3a1a;
+  border:2px solid #00C853;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-vrai:hover { background:#00C853; color:#000; transform:scale(1.03); }
+.quiz-btn-faux {
+  padding:16px;
+  background:#3a1a1a;
+  border:2px solid #E70013;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-faux:hover { background:#E70013; color:#fff; transform:scale(1.03); }
+.quiz-correct-anim { animation: quiz-correct 0.6s ease; }
+.quiz-wrong-anim { animation: quiz-shake 0.5s ease; }
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 </style><style>
 @keyframes rotate3d {
   0%   { transform: rotateY(0deg); }
@@ -774,6 +936,85 @@
 }
 .tn-slot-active {
   animation: tn-slot-glow 1.5s ease infinite;
+}
+
+@keyframes quiz-fadein {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes quiz-pop {
+  0%   { transform:scale(0.8); opacity:0; }
+  70%  { transform:scale(1.05); }
+  100% { transform:scale(1); opacity:1; }
+}
+@keyframes quiz-shake {
+  0%,100% { transform:translateX(0); }
+  20%     { transform:translateX(-8px); }
+  40%     { transform:translateX(8px); }
+  60%     { transform:translateX(-6px); }
+  80%     { transform:translateX(6px); }
+}
+@keyframes quiz-correct {
+  0%   { box-shadow:0 0 0px #00C853; }
+  50%  { box-shadow:0 0 30px #00C853, 0 0 60px rgba(0,200,83,0.4); }
+  100% { box-shadow:0 0 0px #00C853; }
+}
+@keyframes quiz-card-hover {
+  from { transform:translateY(0); box-shadow:none; }
+  to   { transform:translateY(-6px); box-shadow:0 8px 30px rgba(0,200,83,0.3); }
+}
+#quiz-list-view { animation: quiz-fadein 0.5s ease both; }
+#quiz-panel { animation: quiz-fadein 0.4s ease both; }
+.quiz-player-card {
+  background:#111;
+  border:2px solid #333;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s ease;
+  position:relative;
+  z-index:1;
+}
+.quiz-player-card:hover {
+  border-color:#00C853;
+  transform:translateY(-6px);
+  box-shadow:0 8px 30px rgba(0,200,83,0.3);
+}
+.quiz-btn-vrai {
+  padding:16px;
+  background:#1a3a1a;
+  border:2px solid #00C853;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-vrai:hover { background:#00C853; color:#000; transform:scale(1.03); }
+.quiz-btn-faux {
+  padding:16px;
+  background:#3a1a1a;
+  border:2px solid #E70013;
+  color:#fff;
+  border-radius:12px;
+  font-family:Barlow Condensed,sans-serif;
+  font-size:20px;
+  font-weight:700;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.quiz-btn-faux:hover { background:#E70013; color:#fff; transform:scale(1.03); }
+.quiz-correct-anim { animation: quiz-correct 0.6s ease; }
+.quiz-wrong-anim { animation: quiz-shake 0.5s ease; }
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style></head>
 
@@ -820,7 +1061,13 @@
         TIER LIST
         <span style="font-size:12px;color:#aaa;font-weight:400;letter-spacing:0;margin-top:6px;display:block;padding:0 10px;text-align:center;">24 joueurs stars de 2025/2026. Classe-les en 3 categories S, A, B selon leurs performances. Tu peux renommer les categories !</span>
       </button>
-      <button onclick="showPage('tunisia');startTunisiaXI();" class="home-btn home-btn-red" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #E70013;border-radius:16px;color:#E70013;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <button onclick="showPage('quiz')" class="home-btn" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #00C853;border-radius:16px;color:#00C853;font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);">
+      <div style="font-size:11px;letter-spacing:4px;color:#00C853;background:rgba(0,200,83,0.15);padding:6px 16px;border-radius:20px;border:1px solid #00C853;">LIGUE 1</div>
+      <img src="tuns.png" class="btn-icon" style="width:160px;height:160px;object-fit:contain;">
+      <div style="font-size:28px;font-weight:900;">QUIZ</div>
+      <div style="font-size:13px;font-weight:400;color:#aaa;text-align:center;padding:0 16px;line-height:1.4;">Teste tes connaissances sur les joueurs de la Ligue 1 Tunisienne ! 7 questions de facile a difficile !</div>
+    </button>
+    <button onclick="showPage('tunisia');startTunisiaXI();" class="home-btn home-btn-red" style="width:250px;height:380px;background:linear-gradient(135deg,rgba(26,26,26,0.9),rgba(34,34,34,0.9));border:2px solid #E70013;border-radius:16px;color:#E70013;font-family:Barlow Condensed,sans-serif;font-size:24px;font-weight:900;letter-spacing:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:transform 0.2s;backdrop-filter:blur(4px);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
         <div style="background:#E70013;color:#fff;font-size:11px;font-weight:800;letter-spacing:4px;padding:4px 14px;border-radius:4px;margin-bottom:4px;">TUNISIE</div>
         <img src="logo-tunisia.png" class="btn-icon" style="width:160px;height:160px;object-fit:contain;">
         <span>BEST XI</span>
@@ -1519,6 +1766,11 @@ function startBestXI() { showPage("bestxi"); if(typeof step!=="undefined"){step=
 document.addEventListener("DOMContentLoaded", init);
 function showPage(page) {
   history.pushState({page: page}, '', '#' + page);
+  document.querySelectorAll('[id^=page-]').forEach(function(el){
+    el.style.display='none';
+  });
+  var pg = document.getElementById('page-'+page);
+  if(pg) { pg.style.display='flex'; }
   var hbtn = document.getElementById("home-nav-btn");
   if(hbtn) hbtn.style.display = page==="home" ? "none" : "block";
   var fixedBtns = document.querySelectorAll('div[style*="position:fixed"]');
@@ -1736,7 +1988,7 @@ var tnSteps = [
   ]},
   { pos:"st", slot:"tn-slot-st", label:"10 / 11 — STRIKER", title:"ATTAQUANT", players:[
     {name:"FLORIAN DANHO", club:"Esperance Tunis", age:"25 ans", mv:"635k", img:"https://static.flashscore.com/res/image/data/65n9DRyS-IDmUYnZ3.png"},
-    {name:"FIRAS CHAOUAT", club:"Club Africain", age:"30 ans", mv:"1.1m", img:"https://static.flashscore.com/res/image/data/EL8CsfBr-2X9WEIyE.png"},
+    {name:"FIRAS CHAOUAT", club:"Club Africain", age:"30 ans", mv:"1.1m", img:"firas2.png"},
     {name:"OMAR BEN ALI", club:"CS Sfaxien", age:"21 ans", mv:"787k", img:"https://static.flashscore.com/res/image/data/ziFqV5hl-lABaXzzC.png"}
   ]},
   { pos:"lw", slot:"tn-slot-lw", label:"11 / 12 — LEFT WING", title:"AILIER GAUCHE", players:[
@@ -1857,257 +2109,242 @@ function tnPick(stepIdx, playerIdx) {
   }
 }
 </script>
+
+<div id="page-quiz" style="display:none;width:100%;min-height:100vh;background:#0a0a0a;flex-direction:column;align-items:center;padding:40px 20px;box-sizing:border-box;">
+  
+  <!-- Vue question -->
+  <div id="quiz-question-view" style="display:none;width:100%;max-width:600px;text-align:center;padding:20px;">
+    <div id="quiz-progress" style="color:#888;font-size:13px;margin-bottom:8px;">Question 1 / 7</div>
+    <div id="quiz-score-display" style="color:#00C853;font-size:15px;font-weight:700;margin-bottom:20px;">Score: 0</div>
+    <div id="quiz-question-container"></div>
+  </div>
+  <!-- Liste joueurs -->
+  <div id="quiz-list-view" style="width:100%;max-width:900px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="color:#00C853;font-size:11px;font-weight:700;letter-spacing:4px;margin-bottom:8px;">LIGUE 1 TUNISIENNE</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;color:#FFD700;font-size:52px;font-weight:900;line-height:1;">QUIZ JOUEURS</div>
+      <div style="color:#888;font-size:14px;margin-top:8px;">Choisis un joueur pour commencer le quiz</div>
+    <div style="margin-top:20px;">
+      <input id="quiz-search" type="text" placeholder="🔍 Rechercher un joueur..." 
+        oninput="filterQuizPlayers(this.value)"
+        style="width:100%;max-width:400px;padding:12px 20px;border-radius:25px;border:2px solid #00C853;background:#111;color:#fff;font-size:16px;outline:none;box-sizing:border-box;">
+    </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;width:100%;">
+      <div onclick="startQuiz('chaouat')" class="quiz-player-card">
+        <img src="firas2.png" style="width:120px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;color:#fff;font-size:20px;font-weight:900;">FIRAS CHAOUAT</div>
+        <div style="color:#E70013;font-size:13px;">Club Africain</div>
+        <div style="color:#888;font-size:12px;margin-top:4px;">Avant-centre · 30 ans</div>
+        <div style="margin-top:10px;background:#00C853;color:#000;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;">7 QUESTIONS</div>
+      </div>
+      <div onclick="startQuiz('belaili')" class="quiz-player-card">
+        <img src="blaili2.png" style="width:120px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;color:#fff;font-size:20px;font-weight:900;">YOUCEF BELAILI</div>
+        <div style="color:#E70013;font-size:13px;">Esperance Tunis</div>
+        <div style="color:#888;font-size:12px;margin-top:4px;">Ailier gauche · 34 ans</div>
+        <div style="margin-top:10px;background:#00C853;color:#000;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;">7 QUESTIONS</div>
+      </div>
+      <div onclick="startQuiz('msakni')" class="quiz-player-card">
+        <img src="msakni.png" style="width:120px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;color:#fff;font-size:20px;font-weight:900;">YOUSSEF MSAKNI</div>
+        <div style="color:#E70013;font-size:13px;">Esperance Tunis</div>
+        <div style="color:#888;font-size:12px;margin-top:4px;">Ailier gauche · 35 ans</div>
+        <div style="margin-top:10px;background:#00C853;color:#000;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;">7 QUESTIONS</div>
+      </div>
+      <div onclick="startQuiz('aouani')" class="quiz-player-card">
+        <img src="raki_aouani2.png" style="width:120px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;color:#fff;font-size:20px;font-weight:900;">RAKI AOUANI</div>
+        <div style="color:#E70013;font-size:13px;">Etoile du Sahel</div>
+        <div style="color:#888;font-size:12px;margin-top:4px;">Attaquant · 21 ans</div>
+        <div style="margin-top:10px;background:#00C853;color:#000;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;">7 QUESTIONS</div>
+      </div>
+      <div onclick="startQuiz('benzarti')" class="quiz-player-card">
+        <img src="faouzi_benzarti.jpg" style="width:120px;height:150px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;color:#fff;font-size:20px;font-weight:900;">FAOUZI BENZARTI</div>
+        <div style="color:#E70013;font-size:13px;">Club Africain</div>
+        <div style="color:#888;font-size:12px;margin-top:4px;">Entraineur · 76 ans</div>
+        <div style="margin-top:10px;background:#00C853;color:#000;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px;display:inline-block;">7 QUESTIONS</div>
+      </div>
+      </div>
+  </div>
+</div>
+<script>
+var quizData = {
+  chaouat: {
+    name: "FIRAS CHAOUAT",
+    img: "firas2.png",
+    club: "Club Africain",
+    questions: [
+      { q: "Chaouat a joue pour l Esperance de Tunis ?", type:"tf", answer: false, diff:3 },
+      { q: "Chaouat joue au poste d avant-centre ?", type:"tf", answer: true, diff:3 },
+      { q: "Chaouat est ne en Tunisie ?", type:"tf", answer: true, diff:3 },
+      { q: "Chaouat a represente la Tunisie en selection nationale ?", type:"tf", answer: true, diff:3 },
+      { q: "Chaouat joue au Club Africain ?", type:"tf", answer: true, diff:3 },
+      { q: "Chaouat a marque plus de 10 buts en championnat ?", type:"tf", answer: true, diff:3 },
+      { q: "Chaouat a 30 ans ?", type:"tf", answer: true, diff:3 }
+    ]
+  },
+  belaili: {
+    name: "YOUCEF BELAILI",
+    img: "blaili2.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Belaili est Algerien ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a joue en Qatar ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a joue pour le Brest en Ligue 1 ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a marque contre l Allemagne en Coupe du Monde 2022 ?", type:"tf", answer: false, diff:3 },
+      { q: "Belaili joue comme ailier gauche ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a plus de 50 selections avec l Algerie ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a 34 ans ?", type:"tf", answer: true, diff:3 }
+    ]
+  },
+  msakni: {
+    name: "YOUSSEF MSAKNI",
+    img: "msakni.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Msakni a joue au Qatar pendant plus de 10 ans ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de buts Msakni a marque avec la Tunisie ?", type:"number", answer: 23, diff:3 },
+      { q: "Msakni a joue en Belgique a KAS Eupen ?", type:"tf", answer: true, diff:3 },
+      { q: "Msakni a marque un triple contre la Guinee en 2017 ?", type:"tf", answer: true, diff:3 },
+      { q: "Msakni a remporte le CHAN avec la Tunisie en 2011 ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de selections officielles Msakni a avec la Tunisie ?", type:"number", answer: 104, diff:3 },
+      { q: "Msakni a remporte la CAN avec la Tunisie ?", type:"tf", answer: false, diff:3 }
+    ]
+  },
+  aouani: {
+    name: "RAKI AOUANI",
+    img: "raki_aouani2.png",
+    club: "Etoile du Sahel",
+    questions: [
+      { q: "Raki Aouani est ne en 2004 ?", type:"tf", answer: true, diff:3 },
+      { q: "Aouani a signe pour Riga FC en Lettonie en 2026 ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de buts Aouani a marque avec Etoile du Sahel ?", type:"number", answer: 12, diff:3 },
+      { q: "Aouani joue au poste de gardien de but ?", type:"tf", answer: false, diff:3 },
+      { q: "Combien de matchs Aouani a joue avec Etoile du Sahel ?", type:"number", answer: 103, diff:3 },
+      { q: "Aouani a represente la Tunisie U20 ?", type:"tf", answer: true, diff:3 },
+      { q: "Aouani mesure 1.79m ?", type:"tf", answer: true, diff:3 }
+    ]
+  },
+  benzarti: {
+    name: "FAOUZI BENZARTI",
+    img: "faouzi_benzarti.jpg",
+    club: "Club Africain",
+    questions: [
+      { q: "Benzarti est ne a Monastir ?", type:"tf", answer: true, diff:3 },
+      { q: "Benzarti a mene le Raja en finale du Mondial des clubs ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de fois Benzarti a ete selectionneur de la Tunisie ?", type:"number", answer: 3, diff:3 },
+      { q: "Benzarti a remporte la Ligue des champions CAF comme entraineur ?", type:"tf", answer: true, diff:3 },
+      { q: "En quelle annee Benzarti est ne ?", type:"number", answer: 1950, diff:3 },
+      { q: "Benzarti a entraine le Wydad de Casablanca ?", type:"tf", answer: true, diff:3 },
+      { q: "Benzarti est classe 9e meilleur entraineur africain de tous les temps ?", type:"tf", answer: true, diff:3 }
+    ]
+  }
+};
+var quizCurrent = null;
+var quizScore = 0;
+var quizIndex = 0;
+function filterQuizPlayers(val) {
+  val = val.toLowerCase().trim();
+  var cards = document.querySelectorAll(".quiz-player-card");
+  // Aliases et variantes phonetiques
+  var aliases = {
+    "chaouat": ["chaouat","chaout","chawat","firas","fc","chaouet"],
+    "belaili": ["belaili","blaili","belaïli","youcef","youssef belaili","blaïli","beli"],
+    "msakni": ["msakni","msakni","meskni","youssef","msekni","msakny"],
+    "aouani": ["aouani","aoueni","awani","raki","rakki","aouany"],
+    "benzarti": ["benzarti","benzartie","benzarty","faouzi","fauzi","fouzi","benzarti"]
+  };
+  function matches(player, query) {
+    if (!query) return true;
+    var targets = aliases[player] || [];
+    // Match direct
+    for (var i=0; i<targets.length; i++) {
+      if (targets[i].includes(query) || query.includes(targets[i])) return true;
+    }
+    // Match fuzzy: compter lettres communes
+    var common = 0;
+    for (var c=0; c<query.length; c++) {
+      if (targets.join("").includes(query[c])) common++;
+    }
+    return query.length > 2 && common / query.length > 0.7;
+  }
+  cards.forEach(function(card) {
+    var oc = card.getAttribute("onclick");
+    var m = oc ? oc.match(/startQuiz\('(\w+)'\)/) : null;
+    if (!m) return;
+    var player = m[1];
+    card.style.display = matches(player, val) ? "" : "none";
+  });
+}
+function startQuiz(player) {
+  quizCurrent = quizData[player];
+  quizScore = 0;
+  quizIndex = 0;
+  showPage("quiz");
+  document.getElementById("quiz-list-view").style.display = "none";
+  document.getElementById("quiz-question-view").style.display = "block";
+  renderQuizQuestion();
+}
+function renderQuizQuestion() {
+  var q = quizCurrent.questions[quizIndex];
+  document.getElementById("quiz-list-view").style.display = "none";
+  document.getElementById("quiz-question-view").style.display = "block";
+  var container = document.getElementById("quiz-question-container");
+  var html = "<div style=\"text-align:center;padding:20px;\">";
+  html += "<img src=\"" + quizCurrent.img + "\" style=\"width:100px;height:120px;object-fit:cover;border-radius:10px;margin-bottom:12px;\">";
+  html += "<div style=\"color:#fff;font-size:22px;font-weight:900;margin-bottom:20px;\">" + quizCurrent.name + "</div>";
+  html += "<div style=\"color:#ccc;font-size:16px;margin-bottom:24px;padding:0 20px;\">" + q.q + "</div>";
+  if (q.type === "tf") {
+    html += "<div style=\"display:flex;gap:20px;justify-content:center;\">";
+    html += "<button onclick=\"answerQuiz(true)\" style=\"background:#00C853;color:#000;font-size:18px;font-weight:900;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;\">VRAI</button>";
+    html += "<button onclick=\"answerQuiz(false)\" style=\"background:#E70013;color:#fff;font-size:18px;font-weight:900;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;\">FAUX</button>";
+    html += "</div>";
+  } else {
+    html += "<input id=\"quiz-number-input\" type=\"number\" style=\"font-size:22px;padding:10px;border-radius:8px;border:2px solid #00C853;background:#111;color:#fff;text-align:center;width:150px;\">";
+    html += "<br><br><button onclick=\"submitNumber()\" style=\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;\">CONFIRMER</button>";
+  }
+  html += "</div>";
+  container.innerHTML = html;
+  document.getElementById("quiz-progress").textContent = "Question " + (quizIndex+1) + " / " + quizCurrent.questions.length;
+  document.getElementById("quiz-score-display").textContent = "Score: " + quizScore;
+}
+function answerQuiz(answer) {
+  var q = quizCurrent.questions[quizIndex];
+  if (answer === q.answer) quizScore++;
+  quizIndex++;
+  if (quizIndex < quizCurrent.questions.length) {
+    renderQuizQuestion();
+  } else {
+    showQuizResult();
+  }
+}
+function submitNumber() {
+  var val = parseInt(document.getElementById("quiz-number-input").value);
+  var q = quizCurrent.questions[quizIndex];
+  if (val === q.answer) quizScore++;
+  quizIndex++;
+  if (quizIndex < quizCurrent.questions.length) {
+    renderQuizQuestion();
+  } else {
+    showQuizResult();
+  }
+}
+function showQuizResult() {
+  var container = document.getElementById("quiz-question-container");
+  var total = quizCurrent.questions.length;
+  var pct = Math.round((quizScore/total)*100);
+  var msg = pct >= 80 ? "EXCELLENT !" : pct >= 50 ? "PAS MAL !" : "A RETRAVAILLER !";
+  container.innerHTML = "<div style=\"text-align:center;padding:30px;\">" +
+    "<div style=\"font-size:60px;margin-bottom:10px;\">" + (pct>=80?"🏆":pct>=50?"⭐":"💪") + "</div>" +
+    "<div style=\"color:#00C853;font-size:36px;font-weight:900;\">" + msg + "</div>" +
+    "<div style=\"color:#fff;font-size:24px;margin:16px 0;\">" + quizScore + " / " + total + "</div>" +
+    "<button onclick=\"showPage(\'quiz-list\')\" style=\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;margin-top:10px;\">RETOUR</button>" +
+    "</div>";
+  document.getElementById("quiz-progress").textContent = "Termine !";
+  document.getElementById("quiz-score-display").textContent = "Score final: " + quizScore + "/" + total;
+}
+</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

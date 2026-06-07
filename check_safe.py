@@ -1,0 +1,5 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+count = content.count('<!-- Liste joueurs -->')
+print('Occurrences:', count)
+count2 = content.count('function startQuiz(player)')
+print('startQuiz occurrences:', count2)

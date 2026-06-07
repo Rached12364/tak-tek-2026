@@ -1,0 +1,7 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+idx = content.find("msakni:")
+print('msakni trouvé:', idx)
+idx2 = content.find("aouani:")
+print('aouani trouvé:', idx2)
+idx3 = content.find("benzarti:")
+print('benzarti trouvé:', idx3)

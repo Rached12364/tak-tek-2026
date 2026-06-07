@@ -1,0 +1,6 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+idx = content.find("var quizData")
+print(content[idx:idx+100])
+idx2 = content.find("var quizCurrent")
+print('quizCurrent position:', idx2)
+print(content[idx2-200:idx2+50])
