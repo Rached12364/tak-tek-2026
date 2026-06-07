@@ -1,0 +1,75 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+old = '''  benzarti: {
+    name: "FAOUZI BENZARTI",
+    img: "faouzi3.png",
+    club: "Club Africain",
+    questions: [
+      { q: "Benzarti est ne a Monastir ?", type:"tf", answer: true, diff:3 },
+      { q: "Benzarti a mene le Raja en finale du Mondial des clubs ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de fois Benzarti a ete selectionneur de la Tunisie ?", type:"number", answer: 3, diff:3 },
+      { q: "Benzarti a remporte la Ligue des champions CAF comme entraineur ?", type:"tf", answer: true, diff:3 },
+      { q: "En quelle annee Benzarti est ne ?", type:"number", answer: 1950, diff:3 },
+      { q: "Benzarti a entraine le Wydad de Casablanca ?", type:"tf", answer: true, diff:3 },
+      { q: "Benzarti est classe 9e meilleur entraineur africain de tous les temps ?", type:"tf", answer: true, diff:3 }
+    ]
+  }'''
+new = '''  benzarti: {
+    name: "FAOUZI BENZARTI",
+    img: "faouzi3.png",
+    club: "Club Africain",
+    questions: [
+      { q: "Benzarti est ne le 3 janvier 1950 a Monastir ?", type:"tf", answer: true },
+      { q: "Benzarti est Tunisien ?", type:"tf", answer: true },
+      { q: "Benzarti a joue comme milieu offensif durant sa carriere ?", type:"tf", answer: true },
+      { q: "Benzarti a passe toute sa carriere de joueur a l US Monastirienne ?", type:"tf", answer: true },
+      { q: "Benzarti a commence sa carriere d entraineur en 1977 ?", type:"tf", answer: true },
+      { q: "Benzarti est l entraineur le plus titre de Tunisie ?", type:"tf", answer: true },
+      { q: "Benzarti a ete classe 9e meilleur entraineur africain de tous les temps en 2017 ?", type:"tf", answer: true },
+      { q: "Benzarti a mene le Raja Casablanca en finale du Mondial des clubs 2013 ?", type:"tf", answer: true },
+      { q: "Le Raja a perdu la finale du Mondial 2013 contre le Bayern Munich ?", type:"tf", answer: true },
+      { q: "Le score de la finale du Mondial 2013 etait 2-0 pour le Bayern ?", type:"tf", answer: true },
+      { q: "Benzarti a ete selectionneur de la Tunisie 3 fois ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Ligue des champions CAF avec l EST en 1994 ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Supercoupe CAF avec le Wydad en 2018 ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le Wydad AC plusieurs fois ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte le championnat du Maroc avec le Wydad ?", type:"tf", answer: true },
+      { q: "Combien de fois Benzarti a remporte le championnat du Maroc avec le Wydad ?", type:"mcq", answer: 2, choices:[1, 2, 3] },
+      { q: "Benzarti a remporte le championnat de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de titres de champion de Tunisie Benzarti a remporte avec l EST ?", type:"mcq", answer: 5, choices:[3, 5, 7] },
+      { q: "Benzarti a remporte le championnat de Tunisie avec l ES Sahel ?", type:"tf", answer: true },
+      { q: "Combien de fois Benzarti a remporte le championnat de Tunisie avec l ES Sahel ?", type:"mcq", answer: 4, choices:[2, 4, 6] },
+      { q: "Benzarti a remporte le championnat de Tunisie avec le Club Africain ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte le titre avec le Club Africain en 2026 ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Coupe de la Confederation avec l ES Sahel ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le Raja Casablanca deux fois ?", type:"tf", answer: true },
+      { q: "Benzarti a ete decore par le roi Mohammed VI du Maroc en 2013 ?", type:"tf", answer: true },
+      { q: "Benzarti a recu l Ordre national du Merite tunisien en 2004 ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine la selection nationale libyenne ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le MC Alger ?", type:"tf", answer: true },
+      { q: "Benzarti est le frere de l entraineur Lotfi Benzarti ?", type:"tf", answer: true },
+      { q: "Benzarti prône un style de jeu offensif avec pressing haut ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine plus de 14 clubs differents ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Supercoupe de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte le Championnat arabe des clubs avec l EST ?", type:"tf", answer: true },
+      { q: "Benzarti a ete sélectionneur de la Tunisie en 2018 ?", type:"tf", answer: true },
+      { q: "Benzarti a qualifie la Tunisie pour la CAN 2019 en 2018 ?", type:"tf", answer: true },
+      { q: "Benzarti a ete limoge apres 3 victoires avec la Tunisie en 2018 ?", type:"tf", answer: true },
+      { q: "Le Raja a battu l Atletico Mineiro de Ronaldinho au Mondial 2013 ?", type:"tf", answer: true },
+      { q: "Combien de buts le Raja a marque contre l Atletico Mineiro en 2013 ?", type:"mcq", answer: 3, choices:[1, 3, 5] },
+      { q: "Benzarti a entraine l ES Sahel de 2014 a 2016 ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Coupe de Tunisie avec l ES Sahel en 2015 ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le CS Sfaxien ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le Stade Tunisien ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine aux Emirats Arabes Unis ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Ligue des champions CAF 1994 avec l EST ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine l US Monastirienne plusieurs fois ?", type:"tf", answer: true },
+      { q: "Benzarti a utilise le systeme 4-3-3 et 4-4-2 au Raja ?", type:"tf", answer: true },
+      { q: "Benzarti est ne en 1950 ce qui lui fait 76 ans en 2026 ?", type:"tf", answer: true },
+      { q: "Benzarti a plus de 300 victoires en carriere d entraineur ?", type:"tf", answer: true },
+      { q: "Benzarti a entraine le Club Africain actuellement en 2025-2026 ?", type:"tf", answer: true },
+      { q: "Benzarti a remporte la Supercoupe d Afrique 1995 avec l EST ?", type:"tf", answer: true }
+    ]
+  }'''
+content = content.replace(old, new)
+open('index.html','w',encoding='utf-8').write(content)
+print('OK')

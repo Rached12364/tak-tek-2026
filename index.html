@@ -734,6 +734,29 @@
   50% { transform: rotateY(180deg) scale(1.1); }
   100% { transform: rotateY(360deg) scale(1); }
 }
+@keyframes slideInLeft {
+  from { opacity:0; transform:translateX(-40px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity:0; transform:translateX(40px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes countdown-pulse {
+  0%   { transform:scale(1); }
+  50%  { transform:scale(1.2); color:#FFD700; border-color:#FFD700; }
+  100% { transform:scale(1); }
+}
+@keyframes flash-correct {
+  0%   { background:#0a0a1a; }
+  50%  { background:rgba(0,200,83,0.3); }
+  100% { background:#0a0a1a; }
+}
+@keyframes flash-wrong {
+  0%   { background:#0a0a1a; }
+  50%  { background:rgba(231,0,19,0.3); }
+  100% { background:#0a0a1a; }
+}
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -2110,13 +2133,27 @@ function tnPick(stepIdx, playerIdx) {
 }
 </script>
 
-<div id="page-quiz" style="display:none;width:100%;min-height:100vh;background:#0a0a0a;flex-direction:column;align-items:center;padding:40px 20px;box-sizing:border-box;">
+<div id="page-quiz" style="display:none;width:100%;min-height:100vh;background:url(backround.jpg) center/cover no-repeat fixed;position:relative;;flex-direction:column;align-items:center;padding:40px 20px;box-sizing:border-box;">
   
+  <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);z-index:0;pointer-events:none;"></div>
+  <div style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;">
   <!-- Vue question -->
-  <div id="quiz-question-view" style="display:none;width:100%;max-width:600px;text-align:center;padding:20px;">
-    <div id="quiz-progress" style="color:#888;font-size:13px;margin-bottom:8px;">Question 1 / 7</div>
-    <div id="quiz-score-display" style="color:#00C853;font-size:15px;font-weight:700;margin-bottom:20px;">Score: 0</div>
-    <div id="quiz-question-container"></div>
+  <div id="quiz-question-view" style="display:none;width:100%;max-width:1100px;padding:20px;box-sizing:border-box;">
+    <!-- Header progress -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
+      <div id="quiz-progress" style="color:#888;font-size:15px;font-weight:700;letter-spacing:2px;">Question 1 / 7</div>
+      <div id="quiz-countdown" style="width:52px;height:52px;border-radius:50%;border:3px solid #00C853;display:flex;align-items:center;justify-content:center;color:#00C853;font-size:22px;font-weight:900;background:rgba(0,200,83,0.1);">7</div>
+      <div id="quiz-score-display" style="color:#00C853;font-size:15px;font-weight:700;letter-spacing:2px;">Score: 0</div>
+    </div>
+    <!-- Layout gauche/droite -->
+    <div style="display:flex;gap:40px;align-items:center;justify-content:center;">
+      <!-- Carte joueur gauche -->
+      <div id="quiz-player-card-display" style="flex-shrink:0;width:280px;text-align:center;animation:slideInLeft 0.5s ease;">
+      </div>
+      <!-- Question droite -->
+      <div id="quiz-question-container" style="flex:1;max-width:550px;">
+      </div>
+    </div>
   </div>
   <!-- Liste joueurs -->
   <div id="quiz-list-view" style="width:100%;max-width:900px;">
@@ -2176,13 +2213,56 @@ var quizData = {
     img: "firas2.png",
     club: "Club Africain",
     questions: [
-      { q: "Chaouat a joue pour l Esperance de Tunis ?", type:"tf", answer: false, diff:3 },
-      { q: "Chaouat joue au poste d avant-centre ?", type:"tf", answer: true, diff:3 },
-      { q: "Chaouat est ne en Tunisie ?", type:"tf", answer: true, diff:3 },
-      { q: "Chaouat a represente la Tunisie en selection nationale ?", type:"tf", answer: true, diff:3 },
-      { q: "Chaouat joue au Club Africain ?", type:"tf", answer: true, diff:3 },
-      { q: "Chaouat a marque plus de 10 buts en championnat ?", type:"tf", answer: true, diff:3 },
-      { q: "Chaouat a 30 ans ?", type:"tf", answer: true, diff:3 }
+      { q: "Chaouat est ne a Sfax ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Arabie Saoudite avec Abha Club ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Egypte avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Chaouat a joue au Bahrain avec Al-Muharraq ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec le CS Sfaxien ?", type:"mcq", answer: 50, choices:[35, 50, 63] },
+      { q: "Chaouat mesure 1.85m ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte 2 Coupes de Tunisie avec Sfaxien (2019 et 2021) ?", type:"tf", answer: true },
+      { q: "Le premier but de Chaouat en selection etait contre le Niger ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec l ES Sahel en 2024-2025 ?", type:"mcq", answer: 19, choices:[12, 19, 24] },
+      { q: "Chaouat a remporte le championnat de Tunisie 2026 avec le Club Africain ?", type:"tf", answer: true },
+      { q: "Chaouat a debute sa carriere pro en 2015 ?", type:"tf", answer: true },
+      { q: "Chaouat joue au poste d avant-centre ?", type:"tf", answer: true },
+      { q: "Chaouat a joue plus de 100 matchs avec le CS Sfaxien ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 8 buts avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec Al-Muharraq ?", type:"mcq", answer: 8, choices:[4, 8, 12] },
+      { q: "Chaouat a joue avec l ES Sahel avant le Club Africain ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 6 buts avec la selection tunisienne ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 30 matchs avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat est meilleur buteur du championnat 2024-2025 ?", type:"tf", answer: true },
+      { q: "Chaouat est meilleur buteur du championnat 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat utilise son pied droit comme pied fort ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 15 buts avec le Club Africain en 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en premiere division tunisienne des 2015 ?", type:"tf", answer: true },
+      { q: "Chaouat a inscrit 7 buts en championnat lors de la saison 2017-2018 ?", type:"tf", answer: true },
+      { q: "Chaouat a participe a la Coupe de la Confederation en 2017 ?", type:"tf", answer: true },
+      { q: "Combien de matchs Chaouat a joue avec Abha Club ?", type:"mcq", answer: 13, choices:[8, 13, 20] },
+      { q: "Chaouat a joue au CS Sfaxien avant d aller a l etranger ?", type:"tf", answer: true },
+      { q: "Chaouat est ne en 1996 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 22 matchs avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Combien de matchs Chaouat a joue avec Al-Muharraq ?", type:"mcq", answer: 16, choices:[10, 16, 22] },
+      { q: "Chaouat a joue 30 matchs avec l ES Sahel ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 26 matchs avec le Club Africain en 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte la Coupe de Tunisie 2019 ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte la Coupe de Tunisie 2021 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour le CS Sfaxien de 2015 a 2022 ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec le Club Africain ?", type:"mcq", answer: 15, choices:[10, 15, 20] },
+      { q: "Chaouat a joue pour Ismaily SC de 2022 a 2023 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour Al-Muharraq de 2023 a 2024 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour l ES Sahel de 2024 a 2025 ?", type:"tf", answer: true },
+      { q: "Chaouat a debute en selection en 2018 ?", type:"tf", answer: true },
+      { q: "Le premier match de Chaouat en selection etait contre le Niger en 2018 ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 2 buts lors de son premier match en selection ?", type:"tf", answer: true },
+      { q: "La Tunisie a gagne 2-1 contre le Niger lors du premier match de Chaouat ?", type:"tf", answer: true },
+      { q: "Chaouat a fait ses debuts en club avec le CS Sfaxien ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Coupe arabe de la FIFA 2025 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en CAN 2025 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en CAN 2019 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque en total avec la Tunisie ?", type:"mcq", answer: 6, choices:[3, 6, 10] },
+      { q: "Chaouat a joue en Coupe du Monde 2026 ?", type:"tf", answer: true },
+      { q: "Chaouat mesure plus de 1.80m ?", type:"tf", answer: true }
     ]
   },
   belaili: {
@@ -2190,13 +2270,56 @@ var quizData = {
     img: "blaili2.png",
     club: "Esperance Tunis",
     questions: [
-      { q: "Belaili est Algerien ?", type:"tf", answer: true, diff:3 },
-      { q: "Belaili a joue en Qatar ?", type:"tf", answer: true, diff:3 },
-      { q: "Belaili a joue pour le Brest en Ligue 1 ?", type:"tf", answer: true, diff:3 },
-      { q: "Belaili a marque contre l Allemagne en Coupe du Monde 2022 ?", type:"tf", answer: false, diff:3 },
-      { q: "Belaili joue comme ailier gauche ?", type:"tf", answer: true, diff:3 },
-      { q: "Belaili a plus de 50 selections avec l Algerie ?", type:"tf", answer: true, diff:3 },
-      { q: "Belaili a 34 ans ?", type:"tf", answer: true, diff:3 }
+      { q: "Belaili est ne a Oran en Algerie ?", type:"tf", answer: true },
+      { q: "Belaili est ne le 14 mars 1992 ?", type:"tf", answer: true },
+      { q: "Belaili joue au poste d ailier gauche ?", type:"tf", answer: true },
+      { q: "Belaili utilise son pied droit comme pied fort ?", type:"tf", answer: true },
+      { q: "Belaili a ete suspendu 4 ans pour dopage a la cocaine ?", type:"tf", answer: true },
+      { q: "Le TAS a reduit la suspension de Belaili a 2 ans ?", type:"tf", answer: true },
+      { q: "Belaili a joue a Angers en Ligue 1 en 2017 ?", type:"tf", answer: true },
+      { q: "Belaili a joue plus de 10 matchs avec Angers ?", type:"tf", answer: false },
+      { q: "Belaili a remporte la CAN 2019 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a remporte la Coupe arabe 2021 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue au Qatar SC ?", type:"tf", answer: true },
+      { q: "Belaili a joue en Arabie Saoudite avec Al-Ahli SC ?", type:"tf", answer: true },
+      { q: "Belaili a joue au Stade Brestois en Ligue 1 ?", type:"tf", answer: true },
+      { q: "Belaili a joue a l AC Ajaccio en Ligue 1 ?", type:"tf", answer: true },
+      { q: "Belaili a joue au MC Alger avant de revenir a l EST ?", type:"tf", answer: true },
+      { q: "Belaili a remporte la Ligue des champions CAF avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de fois Belaili a remporte la Ligue des champions CAF ?", type:"mcq", answer: 2, choices:[1, 2, 3] },
+      { q: "Belaili a remporte le championnat de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de titres de champion de Tunisie Belaili a remporte avec l EST ?", type:"mcq", answer: 5, choices:[3, 5, 7] },
+      { q: "Belaili a signe a l EST en 2024 contre 500 000 euros ?", type:"tf", answer: true },
+      { q: "Belaili a souffert d une rupture du ligament croise en novembre 2025 ?", type:"tf", answer: true },
+      { q: "Belaili a joue la Coupe du monde des clubs 2025 avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de buts Belaili a marque avec le MC Alger en championnat ?", type:"mcq", answer: 14, choices:[8, 14, 20] },
+      { q: "Belaili a ete elu meilleur joueur africain interclubs en 2019 ?", type:"tf", answer: true },
+      { q: "Belaili a marque le meilleur but de la Ligue 1 2022 contre Monaco ?", type:"tf", answer: true },
+      { q: "Belaili a disparu de l AC Ajaccio en avril 2023 ?", type:"tf", answer: true },
+      { q: "Belaili a joue au MC Oran avant de rejoindre l EST ?", type:"tf", answer: true },
+      { q: "Belaili mesure 1.79m ?", type:"tf", answer: true },
+      { q: "Combien de selections Belaili a avec l Algerie ?", type:"mcq", answer: 59, choices:[42, 59, 74] },
+      { q: "Belaili a marque 10 buts avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue sa premiere competition majeure en CAN 2019 ?", type:"tf", answer: true },
+      { q: "Belaili a ete elu 2e meilleur joueur de la Coupe arabe 2021 ?", type:"tf", answer: true },
+      { q: "Belaili a marque 17 buts avec le Qatar SC en une saison ?", type:"tf", answer: false },
+      { q: "Combien de buts Belaili a marque avec l EST en 2024-2025 ?", type:"mcq", answer: 9, choices:[5, 9, 14] },
+      { q: "Belaili a remporte la Coupe de Tunisie 2025 ?", type:"tf", answer: true },
+      { q: "Belaili a remporte 3 Supercoupes de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Belaili a joue pour CA Bordj Bou Arreridj en debut de carriere ?", type:"tf", answer: true },
+      { q: "Belaili a remporte le championnat d Algerie avec USM Alger ?", type:"tf", answer: true },
+      { q: "Belaili a remporte le championnat d Algerie avec MC Alger ?", type:"tf", answer: true },
+      { q: "Belaili a ete controle positif deux fois au dopage ?", type:"tf", answer: true },
+      { q: "La CAF avait suspendu Belaili 8 ans pour refus de comparaitre ?", type:"tf", answer: true },
+      { q: "Belaili a laisse 50 000 euros de degats dans sa maison a Brest ?", type:"tf", answer: true },
+      { q: "Belaili a ete elu meilleur espoir algerien en 2012 ?", type:"tf", answer: true },
+      { q: "Belaili a marque 6 buts avec AC Ajaccio ?", type:"tf", answer: true },
+      { q: "Combien de buts Belaili a marque avec le Qatar SC au total ?", type:"mcq", answer: 17, choices:[11, 17, 23] },
+      { q: "Belaili a ete joueur du mois de Brest en mai 2022 ?", type:"tf", answer: true },
+      { q: "Belaili a s en pris physiquement a une arbitre femme en 2024 ?", type:"tf", answer: true },
+      { q: "Belaili a recu l ordre du Merite national d Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue en CAN 2023 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili portait le numero 11 a l EST ?", type:"tf", answer: true }
     ]
   },
   msakni: {
@@ -2204,13 +2327,56 @@ var quizData = {
     img: "msakni.png",
     club: "Esperance Tunis",
     questions: [
-      { q: "Msakni a joue au Qatar pendant plus de 10 ans ?", type:"tf", answer: true, diff:3 },
-      { q: "Combien de buts Msakni a marque avec la Tunisie ?", type:"number", answer: 23, diff:3 },
-      { q: "Msakni a joue en Belgique a KAS Eupen ?", type:"tf", answer: true, diff:3 },
-      { q: "Msakni a marque un triple contre la Guinee en 2017 ?", type:"tf", answer: true, diff:3 },
-      { q: "Msakni a remporte le CHAN avec la Tunisie en 2011 ?", type:"tf", answer: true, diff:3 },
-      { q: "Combien de selections officielles Msakni a avec la Tunisie ?", type:"number", answer: 104, diff:3 },
-      { q: "Msakni a remporte la CAN avec la Tunisie ?", type:"tf", answer: false, diff:3 }
+      { q: "Msakni est ne a Tunis le 28 octobre 1990 ?", type:"tf", answer: true },
+      { q: "Msakni a ete forme au Stade Tunisien ?", type:"tf", answer: true },
+      { q: "Msakni joue au poste d ailier gauche ?", type:"tf", answer: true },
+      { q: "Msakni mesure 1.79m ?", type:"tf", answer: true },
+      { q: "Msakni a joue au Qatar pendant plus de 10 ans ?", type:"tf", answer: true },
+      { q: "Msakni a joue en Belgique a KAS Eupen ?", type:"tf", answer: true },
+      { q: "Msakni est le frere du footballeur Iheb Msakni ?", type:"tf", answer: true },
+      { q: "Msakni a remporte le CHAN 2011 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a marque un triple contre la Guinee en 2017 ?", type:"tf", answer: true },
+      { q: "Msakni n a pas participe au Mondial 2018 a cause d une blessure ?", type:"tf", answer: true },
+      { q: "Msakni a joue la Coupe du Monde 2022 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la CAN avec la Tunisie ?", type:"tf", answer: false },
+      { q: "Msakni a ete finaliste de la Coupe arabe 2021 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec la Tunisie ?", type:"mcq", answer: 23, choices:[16, 23, 31] },
+      { q: "Combien de selections Msakni a avec la Tunisie ?", type:"mcq", answer: 104, choices:[82, 104, 121] },
+      { q: "Msakni a marque 17 buts en championnat de Tunisie en 2011-2012 ?", type:"tf", answer: true },
+      { q: "Msakni a ete meilleur buteur du championnat de Tunisie 2011-2012 ?", type:"tf", answer: true },
+      { q: "Msakni a rejoint le Lekhwiya SC en janvier 2013 ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec Al-Duhail et Lekhwiya au Qatar ?", type:"mcq", answer: 97, choices:[71, 97, 115] },
+      { q: "Msakni a remporte 5 titres de champion du Qatar avec Lekhwiya ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Ligue des champions CAF 2011 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete deuxieme meilleur buteur de la LDC CAF 2011 ?", type:"tf", answer: true },
+      { q: "Msakni a marque un but contre l Algerie en CAN 2013 a la 90e minute ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu auteur du plus beau but de la CAN 2013 ?", type:"tf", answer: true },
+      { q: "Msakni a ete convoque pour la premiere fois par Faouzi Benzarti en 2009 ?", type:"tf", answer: true },
+      { q: "Msakni portait le numero 28 a l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete classe 48e meilleur joueur mondial en 2012 par Goal ?", type:"tf", answer: true },
+      { q: "Msakni a joue pour Al-Arabi SC au Qatar ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec l EST (premier passage) ?", type:"mcq", answer: 49, choices:[35, 49, 62] },
+      { q: "Msakni a remporte 4 titres de champion de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete transfere au Qatar pour un record africain en 2013 ?", type:"tf", answer: true },
+      { q: "Le transfert de Msakni au Lekhwiya valait 23 millions de dinars ?", type:"tf", answer: true },
+      { q: "Msakni a ete convoite par Arsenal et Newcastle en 2013 ?", type:"tf", answer: true },
+      { q: "Msakni a marque un triplé contre la Guinee lors des elim CM 2018 ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu meilleur joueur du championnat du Qatar 2022-2023 ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu meilleur joueur tunisien de l annee 2012 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe Crown Prince du Qatar 3 fois ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Supercoupe du Qatar 2 fois ?", type:"tf", answer: true },
+      { q: "Msakni a marque lors de sa premiere apparition en CAN contre le Maroc en 2012 ?", type:"tf", answer: true },
+      { q: "Msakni a joue son premier match pro avec l EST en septembre 2008 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe de Tunisie 2011 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a participe a la CAN 2010 a l age de 19 ans ?", type:"tf", answer: true },
+      { q: "Msakni a marque contre Madagascar en CAN 2019 ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec Al-Arabi SC au total ?", type:"mcq", answer: 28, choices:[18, 28, 38] },
+      { q: "Msakni a joue la Coupe du Monde des moins de 17 ans en 2007 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Ligue des champions arabes avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a marque contre le Zimbabwe en CAN 2017 ?", type:"tf", answer: true },
+      { q: "Msakni a ete finaliste de la Ligue des champions CAF 2012 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe Kirin 2022 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a marque 2 buts contre la Guinee equatoriale en 2022 ?", type:"tf", answer: true }
     ]
   },
   aouani: {
@@ -2218,13 +2384,36 @@ var quizData = {
     img: "raki_aouani2.png",
     club: "Etoile du Sahel",
     questions: [
-      { q: "Raki Aouani est ne en 2004 ?", type:"tf", answer: true, diff:3 },
-      { q: "Aouani a signe pour Riga FC en Lettonie en 2026 ?", type:"tf", answer: true, diff:3 },
-      { q: "Combien de buts Aouani a marque avec Etoile du Sahel ?", type:"number", answer: 12, diff:3 },
-      { q: "Aouani joue au poste de gardien de but ?", type:"tf", answer: false, diff:3 },
-      { q: "Combien de matchs Aouani a joue avec Etoile du Sahel ?", type:"number", answer: 103, diff:3 },
-      { q: "Aouani a represente la Tunisie U20 ?", type:"tf", answer: true, diff:3 },
-      { q: "Aouani mesure 1.79m ?", type:"tf", answer: true, diff:3 }
+      { q: "Raki Aouani est ne le 11 septembre 2004 ?", type:"tf", answer: true },
+      { q: "Aouani est Tunisien ?", type:"tf", answer: true },
+      { q: "Aouani mesure 1.79m ?", type:"tf", answer: true },
+      { q: "Aouani joue au poste d attaquant ?", type:"tf", answer: true },
+      { q: "Aouani a joue pour l Esperance de Tunis ?", type:"tf", answer: false },
+      { q: "Aouani a signe pour Riga FC en Lettonie en janvier 2026 ?", type:"tf", answer: true },
+      { q: "Aouani a fait ses debuts avec l Etoile du Sahel en 2022 ?", type:"tf", answer: true },
+      { q: "Aouani a represente la Tunisie U20 ?", type:"tf", answer: true },
+      { q: "Combien de buts Aouani a marque avec l Etoile du Sahel ?", type:"mcq", answer: 12, choices:[7, 12, 18] },
+      { q: "Combien de matchs Aouani a joue avec l Etoile du Sahel ?", type:"mcq", answer: 103, choices:[78, 103, 125] },
+      { q: "Aouani a participe a la Coupe du monde U20 en Argentine 2023 ?", type:"tf", answer: true },
+      { q: "Aouani a joue en Lettonie dans la Virsliga ?", type:"tf", answer: true },
+      { q: "Aouani a joue 5 matchs avec la Tunisie U20 ?", type:"tf", answer: true },
+      { q: "Aouani avait moins de 22 ans quand il a signe a Riga FC ?", type:"tf", answer: true },
+      { q: "Aouani a marque 2 buts lors de sa premiere saison avec l Etoile du Sahel ?", type:"tf", answer: true },
+      { q: "Riga FC est un club letton ?", type:"tf", answer: true },
+      { q: "Aouani a joue plus de 100 matchs avec l Etoile du Sahel ?", type:"tf", answer: true },
+      { q: "Aouani est considere comme l un des jeunes talents les plus prometteurs de Tunisie ?", type:"tf", answer: true },
+      { q: "Aouani a quitte l Etoile du Sahel en janvier 2026 ?", type:"tf", answer: true },
+      { q: "Aouani joue au poste de gardien de but ?", type:"tf", answer: false },
+      { q: "Aouani est ne en 2004 ce qui fait de lui un joueur de moins de 22 ans ?", type:"tf", answer: true },
+      { q: "Aouani a joue sa premiere saison pro en CLP-1 en 2021-2022 ?", type:"tf", answer: true },
+      { q: "Combien de selections Aouani a avec la Tunisie U20 ?", type:"mcq", answer: 5, choices:[2, 5, 9] },
+      { q: "Aouani a joue en Coupe arabe U20 contre l Algerie ?", type:"tf", answer: true },
+      { q: "Aouani a signe a Riga FC sur un transfert permanent ?", type:"tf", answer: true },
+      { q: "Aouani a marque lors de ses debuts en CLP-1 en 2021-2022 ?", type:"tf", answer: true },
+      { q: "Aouani joue son football en Europe depuis 2026 ?", type:"tf", answer: true },
+      { q: "Aouani portait son nom complet Raki Aouani en arabe ?", type:"tf", answer: true },
+      { q: "L Etoile du Sahel est le seul club tunisien d Aouani avant de partir ?", type:"tf", answer: true },
+      { q: "Aouani a debute sa carriere pro a l age de 17 ans ?", type:"tf", answer: true }
     ]
   },
   benzarti: {
@@ -2234,9 +2423,9 @@ var quizData = {
     questions: [
       { q: "Benzarti est ne a Monastir ?", type:"tf", answer: true, diff:3 },
       { q: "Benzarti a mene le Raja en finale du Mondial des clubs ?", type:"tf", answer: true, diff:3 },
-      { q: "Combien de fois Benzarti a ete selectionneur de la Tunisie ?", type:"number", answer: 3, diff:3 },
+      { q: "Combien de fois Benzarti a ete selectionneur de la Tunisie ?", type:"mcq", answer: 3, choices:[1, 3, 5] },
       { q: "Benzarti a remporte la Ligue des champions CAF comme entraineur ?", type:"tf", answer: true, diff:3 },
-      { q: "En quelle annee Benzarti est ne ?", type:"number", answer: 1950, diff:3 },
+      { q: "En quelle annee Benzarti est ne ?", type:"mcq", answer: 1950, choices:[1945, 1950, 1955] },
       { q: "Benzarti a entraine le Wydad de Casablanca ?", type:"tf", answer: true, diff:3 },
       { q: "Benzarti est classe 9e meilleur entraineur africain de tous les temps ?", type:"tf", answer: true, diff:3 }
     ]
@@ -2278,8 +2467,22 @@ function filterQuizPlayers(val) {
     card.style.display = matches(player, val) ? "" : "none";
   });
 }
+function shuffleArray(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
 function startQuiz(player) {
-  quizCurrent = quizData[player];
+  var data = quizData[player];
+  quizCurrent = {
+    name: data.name,
+    img: data.img,
+    club: data.club,
+    questions: shuffleArray(data.questions).slice(0, 10)
+  };
   quizScore = 0;
   quizIndex = 0;
   showPage("quiz");
@@ -2287,28 +2490,66 @@ function startQuiz(player) {
   document.getElementById("quiz-question-view").style.display = "block";
   renderQuizQuestion();
 }
+var quizTimer = null;
+var quizTimeLeft = 7;
+function startCountdown() {
+  if (quizTimer) clearInterval(quizTimer);
+  quizTimeLeft = 7;
+  var el = document.getElementById("quiz-countdown");
+  if (el) { el.textContent = quizTimeLeft; el.style.borderColor="#00C853"; el.style.color="#00C853"; }
+  quizTimer = setInterval(function(){
+    quizTimeLeft--;
+    var el = document.getElementById("quiz-countdown");
+    if (el) {
+      el.textContent = quizTimeLeft;
+      el.style.animation = "countdown-pulse 0.5s ease";
+      setTimeout(function(){ if(el) el.style.animation=""; }, 500);
+      if (quizTimeLeft <= 3) { el.style.borderColor="#E70013"; el.style.color="#E70013"; }
+    }
+    if (quizTimeLeft <= 0) {
+      clearInterval(quizTimer);
+      answerQuiz(null);
+    }
+  }, 1000);
+}
 function renderQuizQuestion() {
   var q = quizCurrent.questions[quizIndex];
   document.getElementById("quiz-list-view").style.display = "none";
   document.getElementById("quiz-question-view").style.display = "block";
+  // Carte joueur gauche
+  var cardDiv = document.getElementById("quiz-player-card-display");
+  cardDiv.innerHTML = "<img src=\"" + quizCurrent.img + "\" style=\"width:260px;height:320px;object-fit:contain;border-radius:16px;box-shadow:0 0 40px rgba(0,200,83,0.3);\">" +
+    "<div style=\"color:#fff;font-family:Barlow Condensed,sans-serif;font-size:26px;font-weight:900;margin-top:16px;\">" + quizCurrent.name + "</div>" +
+    "<div style=\"color:#E70013;font-size:14px;margin-top:4px;\">" + quizCurrent.club + "</div>";
+  cardDiv.style.animation = "slideInLeft 0.5s ease";
+  // Question droite
   var container = document.getElementById("quiz-question-container");
-  var html = "<div style=\"text-align:center;padding:20px;\">";
-  html += "<img src=\"" + quizCurrent.img + "\" style=\"width:100px;height:120px;object-fit:cover;border-radius:10px;margin-bottom:12px;\">";
-  html += "<div style=\"color:#fff;font-size:22px;font-weight:900;margin-bottom:20px;\">" + quizCurrent.name + "</div>";
-  html += "<div style=\"color:#ccc;font-size:16px;margin-bottom:24px;padding:0 20px;\">" + q.q + "</div>";
+  var html = "<div style=\"animation:slideInRight 0.5s ease;\">";
+  html += "<div style=\"color:#FFD700;font-size:13px;font-weight:700;letter-spacing:3px;margin-bottom:16px;\">QUESTION " + (quizIndex+1) + " / " + quizCurrent.questions.length + "</div>";
+  html += "<div style=\"color:#fff;font-size:24px;font-weight:700;line-height:1.4;margin-bottom:36px;padding:24px;background:rgba(255,255,255,0.05);border-radius:16px;border:1px solid rgba(255,255,255,0.1);\">" + q.q + "</div>";
   if (q.type === "tf") {
-    html += "<div style=\"display:flex;gap:20px;justify-content:center;\">";
-    html += "<button onclick=\"answerQuiz(true)\" style=\"background:#00C853;color:#000;font-size:18px;font-weight:900;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;\">VRAI</button>";
-    html += "<button onclick=\"answerQuiz(false)\" style=\"background:#E70013;color:#fff;font-size:18px;font-weight:900;padding:14px 32px;border:none;border-radius:12px;cursor:pointer;\">FAUX</button>";
+    html += "<div style=\"display:flex;gap:16px;justify-content:center;\">";
+    html += "<button onclick=\"answerQuiz(true)\" style=\"flex:1;background:linear-gradient(135deg,#00C853,#00a843);color:#000;font-size:20px;font-weight:900;padding:18px 0;border:none;border-radius:14px;cursor:pointer;letter-spacing:2px;transition:transform 0.1s;\" onmouseover=\"this.style.transform='scale(1.05)'\" onmouseout=\"this.style.transform='scale(1)'\">✓ VRAI</button>";
+    html += "<button onclick=\"answerQuiz(false)\" style=\"flex:1;background:linear-gradient(135deg,#E70013,#b50010);color:#fff;font-size:20px;font-weight:900;padding:18px 0;border:none;border-radius:14px;cursor:pointer;letter-spacing:2px;transition:transform 0.1s;\" onmouseover=\"this.style.transform='scale(1.05)'\" onmouseout=\"this.style.transform='scale(1)'\">✗ FAUX</button>";
+    html += "</div>";
+  } else if (q.type === "mcq") {
+    html += "<div style=\"display:flex;flex-direction:column;gap:14px;\">";
+    q.choices.forEach(function(choice) {
+      var isCorrect = choice === q.answer;
+      html += "<button onclick=\"answerQuiz(" + isCorrect + ")\" style=\"background:rgba(255,255,255,0.08);color:#fff;font-size:20px;font-weight:700;padding:16px 0;border:2px solid rgba(255,255,255,0.15);border-radius:14px;cursor:pointer;transition:all 0.2s;letter-spacing:1px;\" onmouseover=\"this.style.background='rgba(0,200,83,0.2)';this.style.borderColor='#00C853';\" onmouseout=\"this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.15)';\">  " + choice + "</button>";
+    });
     html += "</div>";
   } else {
-    html += "<input id=\"quiz-number-input\" type=\"number\" style=\"font-size:22px;padding:10px;border-radius:8px;border:2px solid #00C853;background:#111;color:#fff;text-align:center;width:150px;\">";
-    html += "<br><br><button onclick=\"submitNumber()\" style=\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;\">CONFIRMER</button>";
+    html += "<div style=\"text-align:center;\">";
+    html += "<input id=\"quiz-number-input\" type=\"number\" style=\"font-size:28px;padding:14px;border-radius:12px;border:2px solid #00C853;background:#111;color:#fff;text-align:center;width:180px;\">";
+    html += "<br><br><button onclick=\"submitNumber()\" style=\"background:linear-gradient(135deg,#00C853,#00a843);color:#000;font-size:18px;font-weight:900;padding:14px 40px;border:none;border-radius:12px;cursor:pointer;letter-spacing:2px;\">CONFIRMER</button>";
+    html += "</div>";
   }
   html += "</div>";
   container.innerHTML = html;
   document.getElementById("quiz-progress").textContent = "Question " + (quizIndex+1) + " / " + quizCurrent.questions.length;
   document.getElementById("quiz-score-display").textContent = "Score: " + quizScore;
+  startCountdown();
 }
 function answerQuiz(answer) {
   var q = quizCurrent.questions[quizIndex];
@@ -2333,14 +2574,27 @@ function submitNumber() {
 }
 function showQuizResult() {
   var container = document.getElementById("quiz-question-container");
+  var cardDiv = document.getElementById("quiz-player-card-display");
+  if (cardDiv) cardDiv.innerHTML = "";
   var total = quizCurrent.questions.length;
   var pct = Math.round((quizScore/total)*100);
   var msg = pct >= 80 ? "EXCELLENT !" : pct >= 50 ? "PAS MAL !" : "A RETRAVAILLER !";
-  container.innerHTML = "<div style=\"text-align:center;padding:30px;\">" +
-    "<div style=\"font-size:60px;margin-bottom:10px;\">" + (pct>=80?"🏆":pct>=50?"⭐":"💪") + "</div>" +
-    "<div style=\"color:#00C853;font-size:36px;font-weight:900;\">" + msg + "</div>" +
-    "<div style=\"color:#fff;font-size:24px;margin:16px 0;\">" + quizScore + " / " + total + "</div>" +
-    "<button onclick=\"showPage(\'quiz-list\')\" style=\"background:#00C853;color:#000;font-size:16px;font-weight:900;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;margin-top:10px;\">RETOUR</button>" +
+  var color = pct >= 80 ? "#00C853" : pct >= 50 ? "#FFD700" : "#E70013";
+  var emoji = pct>=80 ? "🏆" : pct>=50 ? "⭐" : "💪";
+  var circumference = 2 * Math.PI * 70;
+  var offset = circumference - (pct / 100) * circumference;
+  container.innerHTML = "<div style=\"text-align:center;padding:20px;\">" +
+    "<div style=\"font-size:50px;margin-bottom:16px;\">" + emoji + "</div>" +
+    "<svg width=\"180\" height=\"180\" style=\"margin:0 auto 20px;display:block;\">" +
+      "<circle cx=\"90\" cy=\"90\" r=\"70\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"12\"/>" +
+      "<circle cx=\"90\" cy=\"90\" r=\"70\" fill=\"none\" stroke=\"" + color + "\" stroke-width=\"12\" stroke-linecap=\"round\"" +
+        " stroke-dasharray=\"" + circumference + "\" stroke-dashoffset=\"" + offset + "\" transform=\"rotate(-90 90 90)\"" +
+        " style=\"transition:stroke-dashoffset 1s ease;\"/>" +
+      "<text x=\"90\" y=\"85\" text-anchor=\"middle\" fill=\"" + color + "\" font-size=\"32\" font-weight=\"900\" font-family=\"Barlow Condensed,sans-serif\">" + pct + "%</text>" +
+      "<text x=\"90\" y=\"112\" text-anchor=\"middle\" fill=\"#fff\" font-size=\"14\" font-family=\"Barlow Condensed,sans-serif\">" + quizScore + " / " + total + "</text>" +
+    "</svg>" +
+    "<div style=\"color:" + color + ";font-size:32px;font-weight:900;letter-spacing:2px;margin-bottom:24px;\">" + msg + "</div>" +
+    "<button onclick=\"document.getElementById('quiz-question-view').style.display='none';document.getElementById('quiz-list-view').style.display='block';\" style=\"background:" + color + ";color:#000;font-size:16px;font-weight:900;padding:14px 40px;border:none;border-radius:30px;cursor:pointer;letter-spacing:2px;\">RETOUR</button>" +
     "</div>";
   document.getElementById("quiz-progress").textContent = "Termine !";
   document.getElementById("quiz-score-display").textContent = "Score final: " + quizScore + "/" + total;

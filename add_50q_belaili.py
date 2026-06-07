@@ -1,0 +1,75 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+old = '''  belaili: {
+    name: "YOUCEF BELAILI",
+    img: "blaili2.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Belaili est Algerien ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a joue en Qatar ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a joue pour le Brest en Ligue 1 ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a marque contre l Allemagne en Coupe du Monde 2022 ?", type:"tf", answer: false, diff:3 },
+      { q: "Belaili joue comme ailier gauche ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a plus de 50 selections avec l Algerie ?", type:"tf", answer: true, diff:3 },
+      { q: "Belaili a 34 ans ?", type:"tf", answer: true, diff:3 }
+    ]
+  },'''
+new = '''  belaili: {
+    name: "YOUCEF BELAILI",
+    img: "blaili2.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Belaili est ne a Oran en Algerie ?", type:"tf", answer: true },
+      { q: "Belaili est ne le 14 mars 1992 ?", type:"tf", answer: true },
+      { q: "Belaili joue au poste d ailier gauche ?", type:"tf", answer: true },
+      { q: "Belaili utilise son pied droit comme pied fort ?", type:"tf", answer: true },
+      { q: "Belaili a ete suspendu 4 ans pour dopage a la cocaine ?", type:"tf", answer: true },
+      { q: "Le TAS a reduit la suspension de Belaili a 2 ans ?", type:"tf", answer: true },
+      { q: "Belaili a joue a Angers en Ligue 1 en 2017 ?", type:"tf", answer: true },
+      { q: "Belaili a joue plus de 10 matchs avec Angers ?", type:"tf", answer: false },
+      { q: "Belaili a remporte la CAN 2019 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a remporte la Coupe arabe 2021 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue au Qatar SC ?", type:"tf", answer: true },
+      { q: "Belaili a joue en Arabie Saoudite avec Al-Ahli SC ?", type:"tf", answer: true },
+      { q: "Belaili a joue au Stade Brestois en Ligue 1 ?", type:"tf", answer: true },
+      { q: "Belaili a joue a l AC Ajaccio en Ligue 1 ?", type:"tf", answer: true },
+      { q: "Belaili a joue au MC Alger avant de revenir a l EST ?", type:"tf", answer: true },
+      { q: "Belaili a remporte la Ligue des champions CAF avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de fois Belaili a remporte la Ligue des champions CAF ?", type:"mcq", answer: 2, choices:[1, 2, 3] },
+      { q: "Belaili a remporte le championnat de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de titres de champion de Tunisie Belaili a remporte avec l EST ?", type:"mcq", answer: 5, choices:[3, 5, 7] },
+      { q: "Belaili a signe a l EST en 2024 contre 500 000 euros ?", type:"tf", answer: true },
+      { q: "Belaili a souffert d une rupture du ligament croise en novembre 2025 ?", type:"tf", answer: true },
+      { q: "Belaili a joue la Coupe du monde des clubs 2025 avec l EST ?", type:"tf", answer: true },
+      { q: "Combien de buts Belaili a marque avec le MC Alger en championnat ?", type:"mcq", answer: 14, choices:[8, 14, 20] },
+      { q: "Belaili a ete elu meilleur joueur africain interclubs en 2019 ?", type:"tf", answer: true },
+      { q: "Belaili a marque le meilleur but de la Ligue 1 2022 contre Monaco ?", type:"tf", answer: true },
+      { q: "Belaili a disparu de l AC Ajaccio en avril 2023 ?", type:"tf", answer: true },
+      { q: "Belaili a joue au MC Oran avant de rejoindre l EST ?", type:"tf", answer: true },
+      { q: "Belaili mesure 1.79m ?", type:"tf", answer: true },
+      { q: "Combien de selections Belaili a avec l Algerie ?", type:"mcq", answer: 59, choices:[42, 59, 74] },
+      { q: "Belaili a marque 10 buts avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue sa premiere competition majeure en CAN 2019 ?", type:"tf", answer: true },
+      { q: "Belaili a ete elu 2e meilleur joueur de la Coupe arabe 2021 ?", type:"tf", answer: true },
+      { q: "Belaili a marque 17 buts avec le Qatar SC en une saison ?", type:"tf", answer: false },
+      { q: "Combien de buts Belaili a marque avec l EST en 2024-2025 ?", type:"mcq", answer: 9, choices:[5, 9, 14] },
+      { q: "Belaili a remporte la Coupe de Tunisie 2025 ?", type:"tf", answer: true },
+      { q: "Belaili a remporte 3 Supercoupes de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Belaili a joue pour CA Bordj Bou Arreridj en debut de carriere ?", type:"tf", answer: true },
+      { q: "Belaili a remporte le championnat d Algerie avec USM Alger ?", type:"tf", answer: true },
+      { q: "Belaili a remporte le championnat d Algerie avec MC Alger ?", type:"tf", answer: true },
+      { q: "Belaili a ete controle positif deux fois au dopage ?", type:"tf", answer: true },
+      { q: "La CAF avait suspendu Belaili 8 ans pour refus de comparaitre ?", type:"tf", answer: true },
+      { q: "Belaili a laisse 50 000 euros de degats dans sa maison a Brest ?", type:"tf", answer: true },
+      { q: "Belaili a ete elu meilleur espoir algerien en 2012 ?", type:"tf", answer: true },
+      { q: "Belaili a marque 6 buts avec AC Ajaccio ?", type:"tf", answer: true },
+      { q: "Combien de buts Belaili a marque avec le Qatar SC au total ?", type:"mcq", answer: 17, choices:[11, 17, 23] },
+      { q: "Belaili a ete joueur du mois de Brest en mai 2022 ?", type:"tf", answer: true },
+      { q: "Belaili a s en pris physiquement a une arbitre femme en 2024 ?", type:"tf", answer: true },
+      { q: "Belaili a recu l ordre du Merite national d Algerie ?", type:"tf", answer: true },
+      { q: "Belaili a joue en CAN 2023 avec l Algerie ?", type:"tf", answer: true },
+      { q: "Belaili portait le numero 11 a l EST ?", type:"tf", answer: true }
+    ]
+  },'''
+content = content.replace(old, new)
+open('index.html','w',encoding='utf-8').write(content)
+print('OK')

@@ -1,0 +1,78 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+old = '''  chaouat: {
+    name: "FIRAS CHAOUAT",
+    img: "firas2.png",
+    club: "Club Africain",
+    questions: [
+      { q: "Chaouat est ne a Sfax ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Arabie Saoudite avec Abha Club ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Egypte avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Chaouat a joue au Bahrain avec Al-Muharraq ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec le CS Sfaxien ?", type:"mcq", answer: 50, choices:[35, 50, 63] },
+      { q: "Chaouat mesure 1.85m ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte 2 Coupes de Tunisie avec Sfaxien (2019 et 2021) ?", type:"tf", answer: true },
+      { q: "Le premier but de Chaouat en selection etait contre le Niger ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec l ES Sahel en 2024-2025 ?", type:"mcq", answer: 19, choices:[12, 19, 24] },
+      { q: "Chaouat a remporte le championnat de Tunisie 2026 avec le Club Africain ?", type:"tf", answer: true }
+    ]
+  },'''
+new = '''  chaouat: {
+    name: "FIRAS CHAOUAT",
+    img: "firas2.png",
+    club: "Club Africain",
+    questions: [
+      { q: "Chaouat est ne a Sfax ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Arabie Saoudite avec Abha Club ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Egypte avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Chaouat a joue au Bahrain avec Al-Muharraq ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec le CS Sfaxien ?", type:"mcq", answer: 50, choices:[35, 50, 63] },
+      { q: "Chaouat mesure 1.85m ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte 2 Coupes de Tunisie avec Sfaxien (2019 et 2021) ?", type:"tf", answer: true },
+      { q: "Le premier but de Chaouat en selection etait contre le Niger ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec l ES Sahel en 2024-2025 ?", type:"mcq", answer: 19, choices:[12, 19, 24] },
+      { q: "Chaouat a remporte le championnat de Tunisie 2026 avec le Club Africain ?", type:"tf", answer: true },
+      { q: "Chaouat a debute sa carriere pro en 2015 ?", type:"tf", answer: true },
+      { q: "Chaouat joue au poste d avant-centre ?", type:"tf", answer: true },
+      { q: "Chaouat a joue plus de 100 matchs avec le CS Sfaxien ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 8 buts avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec Al-Muharraq ?", type:"mcq", answer: 8, choices:[4, 8, 12] },
+      { q: "Chaouat a joue avec l ES Sahel avant le Club Africain ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 6 buts avec la selection tunisienne ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 30 matchs avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat est meilleur buteur du championnat 2024-2025 ?", type:"tf", answer: true },
+      { q: "Chaouat est meilleur buteur du championnat 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat utilise son pied droit comme pied fort ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 15 buts avec le Club Africain en 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en premiere division tunisienne des 2015 ?", type:"tf", answer: true },
+      { q: "Chaouat a inscrit 7 buts en championnat lors de la saison 2017-2018 ?", type:"tf", answer: true },
+      { q: "Chaouat a participe a la Coupe de la Confederation en 2017 ?", type:"tf", answer: true },
+      { q: "Combien de matchs Chaouat a joue avec Abha Club ?", type:"mcq", answer: 13, choices:[8, 13, 20] },
+      { q: "Chaouat a joue au CS Sfaxien avant d aller a l etranger ?", type:"tf", answer: true },
+      { q: "Chaouat est ne en 1996 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 22 matchs avec Ismaily SC ?", type:"tf", answer: true },
+      { q: "Combien de matchs Chaouat a joue avec Al-Muharraq ?", type:"mcq", answer: 16, choices:[10, 16, 22] },
+      { q: "Chaouat a joue 30 matchs avec l ES Sahel ?", type:"tf", answer: true },
+      { q: "Chaouat a joue 26 matchs avec le Club Africain en 2025-2026 ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte la Coupe de Tunisie 2019 ?", type:"tf", answer: true },
+      { q: "Chaouat a remporte la Coupe de Tunisie 2021 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour le CS Sfaxien de 2015 a 2022 ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque avec le Club Africain ?", type:"mcq", answer: 15, choices:[10, 15, 20] },
+      { q: "Chaouat a joue pour Ismaily SC de 2022 a 2023 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour Al-Muharraq de 2023 a 2024 ?", type:"tf", answer: true },
+      { q: "Chaouat a joue pour l ES Sahel de 2024 a 2025 ?", type:"tf", answer: true },
+      { q: "Chaouat a debute en selection en 2018 ?", type:"tf", answer: true },
+      { q: "Le premier match de Chaouat en selection etait contre le Niger en 2018 ?", type:"tf", answer: true },
+      { q: "Chaouat a marque 2 buts lors de son premier match en selection ?", type:"tf", answer: true },
+      { q: "La Tunisie a gagne 2-1 contre le Niger lors du premier match de Chaouat ?", type:"tf", answer: true },
+      { q: "Chaouat a fait ses debuts en club avec le CS Sfaxien ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en Coupe arabe de la FIFA 2025 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en CAN 2025 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Chaouat a joue en CAN 2019 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Combien de buts Chaouat a marque en total avec la Tunisie ?", type:"mcq", answer: 6, choices:[3, 6, 10] },
+      { q: "Chaouat a joue en Coupe du Monde 2026 ?", type:"tf", answer: true },
+      { q: "Chaouat mesure plus de 1.80m ?", type:"tf", answer: true }
+    ]
+  },'''
+content = content.replace(old, new)
+open('index.html','w',encoding='utf-8').write(content)
+print('OK')

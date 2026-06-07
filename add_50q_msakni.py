@@ -1,0 +1,75 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+old = '''  msakni: {
+    name: "YOUSSEF MSAKNI",
+    img: "msakni.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Msakni a joue au Qatar pendant plus de 10 ans ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de buts Msakni a marque avec la Tunisie ?", type:"number", answer: 23, diff:3 },
+      { q: "Msakni a joue en Belgique a KAS Eupen ?", type:"tf", answer: true, diff:3 },
+      { q: "Msakni a marque un triple contre la Guinee en 2017 ?", type:"tf", answer: true, diff:3 },
+      { q: "Msakni a remporte le CHAN avec la Tunisie en 2011 ?", type:"tf", answer: true, diff:3 },
+      { q: "Combien de selections officielles Msakni a avec la Tunisie ?", type:"number", answer: 104, diff:3 },
+      { q: "Msakni a remporte la CAN avec la Tunisie ?", type:"tf", answer: false, diff:3 }
+    ]
+  },'''
+new = '''  msakni: {
+    name: "YOUSSEF MSAKNI",
+    img: "msakni.png",
+    club: "Esperance Tunis",
+    questions: [
+      { q: "Msakni est ne a Tunis le 28 octobre 1990 ?", type:"tf", answer: true },
+      { q: "Msakni a ete forme au Stade Tunisien ?", type:"tf", answer: true },
+      { q: "Msakni joue au poste d ailier gauche ?", type:"tf", answer: true },
+      { q: "Msakni mesure 1.79m ?", type:"tf", answer: true },
+      { q: "Msakni a joue au Qatar pendant plus de 10 ans ?", type:"tf", answer: true },
+      { q: "Msakni a joue en Belgique a KAS Eupen ?", type:"tf", answer: true },
+      { q: "Msakni est le frere du footballeur Iheb Msakni ?", type:"tf", answer: true },
+      { q: "Msakni a remporte le CHAN 2011 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a marque un triple contre la Guinee en 2017 ?", type:"tf", answer: true },
+      { q: "Msakni n a pas participe au Mondial 2018 a cause d une blessure ?", type:"tf", answer: true },
+      { q: "Msakni a joue la Coupe du Monde 2022 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la CAN avec la Tunisie ?", type:"tf", answer: false },
+      { q: "Msakni a ete finaliste de la Coupe arabe 2021 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec la Tunisie ?", type:"mcq", answer: 23, choices:[16, 23, 31] },
+      { q: "Combien de selections Msakni a avec la Tunisie ?", type:"mcq", answer: 104, choices:[82, 104, 121] },
+      { q: "Msakni a marque 17 buts en championnat de Tunisie en 2011-2012 ?", type:"tf", answer: true },
+      { q: "Msakni a ete meilleur buteur du championnat de Tunisie 2011-2012 ?", type:"tf", answer: true },
+      { q: "Msakni a rejoint le Lekhwiya SC en janvier 2013 ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec Al-Duhail et Lekhwiya au Qatar ?", type:"mcq", answer: 97, choices:[71, 97, 115] },
+      { q: "Msakni a remporte 5 titres de champion du Qatar avec Lekhwiya ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Ligue des champions CAF 2011 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete deuxieme meilleur buteur de la LDC CAF 2011 ?", type:"tf", answer: true },
+      { q: "Msakni a marque un but contre l Algerie en CAN 2013 a la 90e minute ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu auteur du plus beau but de la CAN 2013 ?", type:"tf", answer: true },
+      { q: "Msakni a ete convoque pour la premiere fois par Faouzi Benzarti en 2009 ?", type:"tf", answer: true },
+      { q: "Msakni portait le numero 28 a l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete classe 48e meilleur joueur mondial en 2012 par Goal ?", type:"tf", answer: true },
+      { q: "Msakni a joue pour Al-Arabi SC au Qatar ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec l EST (premier passage) ?", type:"mcq", answer: 49, choices:[35, 49, 62] },
+      { q: "Msakni a remporte 4 titres de champion de Tunisie avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a ete transfere au Qatar pour un record africain en 2013 ?", type:"tf", answer: true },
+      { q: "Le transfert de Msakni au Lekhwiya valait 23 millions de dinars ?", type:"tf", answer: true },
+      { q: "Msakni a ete convoite par Arsenal et Newcastle en 2013 ?", type:"tf", answer: true },
+      { q: "Msakni a marque un triplé contre la Guinee lors des elim CM 2018 ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu meilleur joueur du championnat du Qatar 2022-2023 ?", type:"tf", answer: true },
+      { q: "Msakni a ete elu meilleur joueur tunisien de l annee 2012 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe Crown Prince du Qatar 3 fois ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Supercoupe du Qatar 2 fois ?", type:"tf", answer: true },
+      { q: "Msakni a marque lors de sa premiere apparition en CAN contre le Maroc en 2012 ?", type:"tf", answer: true },
+      { q: "Msakni a joue son premier match pro avec l EST en septembre 2008 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe de Tunisie 2011 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a participe a la CAN 2010 a l age de 19 ans ?", type:"tf", answer: true },
+      { q: "Msakni a marque contre Madagascar en CAN 2019 ?", type:"tf", answer: true },
+      { q: "Combien de buts Msakni a marque avec Al-Arabi SC au total ?", type:"mcq", answer: 28, choices:[18, 28, 38] },
+      { q: "Msakni a joue la Coupe du Monde des moins de 17 ans en 2007 ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Ligue des champions arabes avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a marque contre le Zimbabwe en CAN 2017 ?", type:"tf", answer: true },
+      { q: "Msakni a ete finaliste de la Ligue des champions CAF 2012 avec l EST ?", type:"tf", answer: true },
+      { q: "Msakni a remporte la Coupe Kirin 2022 avec la Tunisie ?", type:"tf", answer: true },
+      { q: "Msakni a marque 2 buts contre la Guinee equatoriale en 2022 ?", type:"tf", answer: true }
+    ]
+  },'''
+content = content.replace(old, new)
+open('index.html','w',encoding='utf-8').write(content)
+print('OK')
