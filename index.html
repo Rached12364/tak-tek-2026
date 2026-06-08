@@ -734,6 +734,25 @@
   50% { transform: rotateY(180deg) scale(1.1); }
   100% { transform: rotateY(360deg) scale(1); }
 }
+@keyframes tn-slot-fadein {
+  from { opacity:0; transform:scale(0.8); }
+  to   { opacity:1; transform:scale(1); }
+}
+@keyframes tn-glow-lines {
+  0%   { border-color: rgba(255,255,255,0.25); }
+  50%  { border-color: rgba(255,255,255,0.7); box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+  100% { border-color: rgba(255,255,255,0.25); }
+}
+@keyframes tn-fly-in {
+  0%   { opacity:0; transform:translateX(200px) scale(0.5); }
+  60%  { transform:translateX(-5px) scale(1.05); }
+  100% { opacity:1; transform:translateX(0) scale(1); }
+}
+@keyframes tn-slot-selected {
+  0%   { box-shadow:0 0 0px #00C853; }
+  50%  { box-shadow:0 0 25px #00C853; }
+  100% { box-shadow:0 0 8px #00C853; }
+}
 @keyframes slideInLeft {
   from { opacity:0; transform:translateX(-40px); }
   to   { opacity:1; transform:translateX(0); }
@@ -1299,7 +1318,7 @@ const PLAYERS = {
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50566860.fade73fb0f5a0a63e94d7a607437e4f2c92db7ae0d9b38e81b732ca1f448bb21.webp'},
 
-    {id:'cancelo', name:'Joao Cancelo',    club:'Barcelona',     country:'Portugal', flag:'🇵🇹', ini:'JC',
+    {id:'cancelo', name:'Joao Cancelo',    club:'Manchester City',     country:'Portugal', flag:'🇵🇹', ini:'JC',
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84096594.88f74b710f690ad204bbb503a30a7651328652e395f26df1674e8045cea977d3.webp'},
 
@@ -1359,7 +1378,7 @@ const PLAYERS = {
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134452106.d29385a46adb11fece5047fcc6f1e7f5927a2f03cbb8ab0db17acf72982592f2.webp'},
 
-    {id:'pedri',      name:'Pedri',            club:'Barcelona',      country:'Espagne',   flag:'🇪🇸', ini:'PE',
+    {id:'pedri',      name:'Pedri',            club:'Manchester City',      country:'Espagne',   flag:'🇪🇸', ini:'PE',
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-100915150.017c33d1db71b508743f808e084a4abc8b0f567bd0fde7da2d8a9bfd3532e388.webp'},
 
@@ -1411,7 +1430,7 @@ const PLAYERS = {
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-151242771.4dbb347cc5f447f1f6a5880a8d68348252502d08f2be3fed5e21bf65b3773244.webp'},
 
-    {id:'yamal',   name:'Lamine Yamal',  club:'Barcelona',     country:'Espagne', flag:'🇪🇸', ini:'LY',
+    {id:'yamal',   name:'Lamine Yamal',  club:'Manchester City',     country:'Espagne', flag:'🇪🇸', ini:'LY',
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-134495371.d700f06a7970dc1a4c57c3babce96ef8d6b45164014d95838d3d98f43c51ba6e.webp'},
 
@@ -1443,7 +1462,7 @@ const PLAYERS = {
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84124874.85bfa42f8435701db0581d510b973d3d02bbc315217ad218f81bd5bc680a4dd1.webp'},
 
-    {id:'raphinha', name:'Raphinha',      club:'Barcelona',  country:'Brésil',  flag:'🇧🇷', ini:'RA',
+    {id:'raphinha', name:'Raphinha',      club:'Manchester City',  country:'Brésil',  flag:'🇧🇷', ini:'RA',
 
      img:'https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84119499.2725ecb010d4476417a1cb6e4c4db72eca67e96fada52c9851c501b8f3a1f0af.webp'},
 
@@ -1455,9 +1474,9 @@ const PLAYERS = {
 
      img:'https://tse4.mm.bing.net/th?id=OIF.BwvBuaepCwQ0%2b0vIvuvqIw&pid=Api&P=0&h=180'},
 
-    {id:'flick',      name:'Hansi Flick',  club:'Barcelona', country:'Allemagne', flag:'🇩🇪', ini:'HF',
+    {id:'flick',      name:'Pep Guardiola',  club:'Manchester City', country:'Espagne', flag:'🇪🇸', ini:'PG',
 
-     img:'https://media.cnn.com/api/v1/images/stellar/prod/01jd374k9mfg1d42nn027sha2a.jpg?c=16x9&q=h_833,w_1480,c_fill'},
+     img:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Josep_Guardiola_2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2797_%28cropped%29.jpg/960px-Josep_Guardiola_2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2797_%28cropped%29.jpg'},
 
     {id:'arteta',     name:'Mikel Arteta', club:'Arsenal',   country:'Espagne',   flag:'🇪🇸', ini:'MA',
 
@@ -1886,7 +1905,6 @@ function showPage(page) {
   {name:"Rayan Cherki", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-84137650.1acbd14c4e19581ae18f01e3ed1c8b886a353a28adba3f60a94db54a21239025.webp"},
   {name:"Ademola Lookman", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-50562547.0f9645c61d649dd4d5562cae4cf38cdd18abc9dc5b3d8d124fe3c340a8e226fb.webp"},
   {name:"Piero Hincapie", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67365061.026190ba71069ddaa4815a192850f337270b6332b9109202ceafeb8cfe3719ae.webp"},
-  {name:"Ekitike", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-117697801.c539b4a8ce047b89c2889db38d43011deebf6abd5357911afeaf2ff9588633a8.webp"},
   {name:"Luis Diaz", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-151236028.827bba905a03f1f469ac72d0dd6cf88fc0f097d88e52d95869acd2d4ca0ad21e.webp"},
   
   {name:"Cunha", img:"https://game-assets.fut.gg/cdn-cgi/image/quality=85,width=300,format=auto/2026/player-item/26-67349107.83497028afbd80813f8f175e86ade2010a5f24ad25596fe963235bdb8ae13753.webp"},
@@ -1933,28 +1951,28 @@ function drop(e, target) {
   <!-- TERRAIN GAUCHE -->
   <div style="flex:1;position:relative;background:linear-gradient(180deg,#0a2a0a,#0d3d0d,#0a2a0a);display:flex;align-items:center;justify-content:center;overflow:hidden;">
     <!-- Lignes terrain -->
-    <div style="position:absolute;width:75%;height:88%;border:2px solid rgba(255,255,255,0.25);border-radius:4px;"></div>
+    <div style="position:absolute;width:75%;height:88%;border:2px solid rgba(255,255,255,0.25);border-radius:4px;animation:tn-glow-lines 3s ease-in-out infinite;"></div>
     <div style="position:absolute;width:75%;height:1px;background:rgba(255,255,255,0.2);top:50%;"></div>
     <div style="position:absolute;width:120px;height:120px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
     <div style="position:absolute;width:28%;height:18%;border:2px solid rgba(255,255,255,0.2);top:6%;left:50%;transform:translateX(-50%);"></div>
     <div style="position:absolute;width:28%;height:18%;border:2px solid rgba(255,255,255,0.2);bottom:6%;left:50%;transform:translateX(-50%);"></div>
     <!-- Slots joueurs 4-3-3 -->
     <!-- GK -->
-    <div id="tn-slot-coach" style="position:absolute;top:2%;right:2%;width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #FFD700;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#FFD700;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">COACH</div>
-  <div id="tn-slot-gk" style="position:absolute;top:8%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #E70013;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#E70013;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">GK</div>
+    <div id="tn-slot-coach" style="position:absolute;top:2%;right:2%;width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #FFD700;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#FFD700;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">COACH</div>
+  <div id="tn-slot-gk" style="position:absolute;top:8%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #E70013;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#E70013;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;">GK</div>
     <!-- DEF -->
-    <div id="tn-slot-rb" style="position:absolute;top:26%;left:72%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RB</div>
-    <div id="tn-slot-cb1" style="position:absolute;top:26%;left:57%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
-    <div id="tn-slot-cb2" style="position:absolute;top:26%;left:42%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
-    <div id="tn-slot-lb" style="position:absolute;top:26%;left:27%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LB</div>
+    <div id="tn-slot-rb" style="position:absolute;top:26%;left:72%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RB</div>
+    <div id="tn-slot-cb1" style="position:absolute;top:26%;left:57%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
+    <div id="tn-slot-cb2" style="position:absolute;top:26%;left:42%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CB</div>
+    <div id="tn-slot-lb" style="position:absolute;top:26%;left:27%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LB</div>
     <!-- MID -->
-    <div id="tn-slot-cm1" style="position:absolute;top:46%;left:64%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
-    <div id="tn-slot-cdm" style="position:absolute;top:46%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CDM</div>
-    <div id="tn-slot-cm2" style="position:absolute;top:46%;left:36%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
+    <div id="tn-slot-cm1" style="position:absolute;top:46%;left:64%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
+    <div id="tn-slot-cdm" style="position:absolute;top:46%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CDM</div>
+    <div id="tn-slot-cm2" style="position:absolute;top:46%;left:36%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">CM</div>
     <!-- ATT -->
-    <div id="tn-slot-rw" style="position:absolute;top:66%;left:68%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RW</div>
-    <div id="tn-slot-st" style="position:absolute;top:66%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">ST</div>
-    <div id="tn-slot-lw" style="position:absolute;top:66%;left:32%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LW</div>
+    <div id="tn-slot-rw" style="position:absolute;top:66%;left:68%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">RW</div>
+    <div id="tn-slot-st" style="position:absolute;top:66%;left:50%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">ST</div>
+    <div id="tn-slot-lw" style="position:absolute;top:66%;left:32%;transform:translateX(-50%);width:70px;height:90px;background:rgba(0,0,0,0.5);border:2px dashed #555;border-radius:10px;animation:tn-slot-fadein 0.8s ease both;display:flex;align-items:center;justify-content:center;color:#888;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;">LW</div>
   </div>
   <!-- PANNEAU DROITE DYNAMIQUE -->
   <div id="tn-panel" style="width:420px;background:#111;display:flex;flex-direction:column;padding:24px;gap:14px;overflow-y:auto;">
@@ -2121,8 +2139,11 @@ function tnPick(stepIdx, playerIdx) {
   tnPicks[s.pos] = p;
   var slot = document.getElementById(s.slot);
   if(slot) {
-    slot.style.border = "2px solid #E70013";
-    slot.innerHTML = "<img src='"+p.img+"' style='width:66px;height:88px;object-fit:cover;border-radius:8px;'>";
+    slot.style.border = "2px solid #00C853";
+    slot.style.animation = "tn-slot-selected 0.6s ease forwards";
+    slot.style.overflow = "visible";
+    slot.innerHTML = "<div style='position:relative;width:66px;'><img src='"+p.img+"' style='width:66px;height:88px;object-fit:cover;border-radius:8px;animation:tn-fly-in 0.5s ease forwards;display:block;'><div style='position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.75);color:#fff;font-family:Barlow Condensed,sans-serif;font-size:11px;font-weight:900;text-align:center;padding:3px 0;border-radius:0 0 8px 8px;letter-spacing:0.5px;'>"+p.name.split(" ").slice(-1)[0]+"</div></div>";
+    setTimeout(function(){ slot.style.animation = ""; }, 600);
   }
   if(tnStep < tnSteps.length - 1) {
     tnStep++;

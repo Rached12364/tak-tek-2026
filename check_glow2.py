@@ -1,0 +1,6 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+idx = content.find('@keyframes tn-glow-lines')
+print('keyframe position:', idx)
+idx2 = content.find('tn-glow-lines')
+print('usage position:', idx2)
+print(content[idx2-50:idx2+100])

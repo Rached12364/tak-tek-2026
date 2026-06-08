@@ -1,0 +1,5 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+print('tn-slot-fadein trouvé:', content.count('tn-slot-fadein'))
+print('tn-glow-lines trouvé:', content.count('tn-glow-lines'))
+print('tn-fly-in trouvé:', content.count('tn-fly-in'))
+print('tn-slot-selected trouvé:', content.count('tn-slot-selected'))
