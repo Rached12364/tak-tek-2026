@@ -1,0 +1,5 @@
+﻿content = open('index.html','r',encoding='utf-8').read()
+print('firebase-app-compat:', content.count('firebase-app-compat'))
+print('saveProfile:', content.count('window.saveProfile'))
+print('loadLeaderboard:', content.count('window.loadLeaderboard'))
+print('saveQuizScore:', content.count('window.saveQuizScore'))

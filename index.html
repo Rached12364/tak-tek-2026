@@ -1073,6 +1073,10 @@
 
 
 <div id="page-home" style="display:none;width:100%;min-height:100vh;background:#0a0a0a;flex-direction:column;position:relative;z-index:1;;position:relative;;overflow-y:auto;">
+  <div style="position:fixed;top:12px;right:12px;z-index:9999;display:flex;gap:8px;pointer-events:auto;">
+    <div id="profile-display-home" onclick="document.getElementById('profile-modal').style.display='flex'" style="background:rgba(0,0,0,0.85);border:1px solid #00C853;color:#00C853;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;">👤 PROFIL</div>
+    <div onclick="showPage('leaderboard');loadLeaderboard();" style="background:rgba(0,0,0,0.85);border:1px solid #FFD700;color:#FFD700;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;">🏆 TOP 10</div>
+  </div>
   <div style="position:absolute;inset:0;background-image:url('https://img.freepik.com/photos-premium/ballon-football-terrain_250422-501.jpg');background-size:cover;background-position:center;opacity:0.15;pointer-events:none;z-index:0;"></div>
   <div style="position:absolute;bottom:20px;left:20px;z-index:2;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.7);border:1px solid #333;border-radius:12px;padding:10px 16px;">
     <img src="https://scontent.ftun4-2.fna.fbcdn.net/v/t39.30808-1/505574633_1302109074834583_8023426080045082039_n.jpg?stp=c68.0.800.800a_dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=0Hb9j1-bpDYQ7kNvwG6uFqL&_nc_oc=Adr42TvQF3eFsSPfOF6FdhyWO-8Su38vn-64Z7qLxS-73RBxtDLTTnba-5q77f9sn-g&_nc_zt=24&_nc_ht=scontent.ftun4-2.fna&_nc_gid=ivsoTXaZyLH4H3G85JV9QQ&_nc_ss=7b2a8&oh=00_Af-zXYwiiew_7M_d1ECNImId1Xt1sb0W4Zb43o7huCCzxQ&oe=6A2855E0" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:2px solid #FFD700;">
@@ -1118,7 +1122,11 @@
     </div>
   </div>
 </div>
-<div id="wrap" style="display:flex;flex-direction:row;width:100%;height:100vh;overflow:hidden;"><div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div>
+<div id="wrap" style="display:flex;flex-direction:row;width:100%;height:100vh;overflow:hidden;"><div style="position:fixed;top:12px;right:12px;z-index:1000;display:flex;gap:8px;">
+  <div id="profile-display" onclick="document.getElementById('profile-modal').style.display='flex'" style="background:rgba(0,0,0,0.85);border:1px solid #00C853;color:#00C853;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;">👤 PROFIL</div>
+  <div onclick="showPage('leaderboard');loadLeaderboard();" style="background:rgba(0,0,0,0.85);border:1px solid #FFD700;color:#FFD700;padding:7px 14px;border-radius:6px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;">🏆 TOP 10</div>
+</div>
+<div style="position:fixed;top:12px;left:12px;z-index:999;pointer-events:auto;"><button onclick="showPage('home')" style="background:rgba(0,0,0,0.85);color:#FFD700;border:1px solid #FFD700;border-radius:6px;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">&#8592; HOME</button></div>
 
 
 
@@ -2618,8 +2626,114 @@ function showQuizResult() {
     "<button onclick=\"document.getElementById('quiz-question-view').style.display='none';document.getElementById('quiz-list-view').style.display='block';\" style=\"background:" + color + ";color:#000;font-size:16px;font-weight:900;padding:14px 40px;border:none;border-radius:30px;cursor:pointer;letter-spacing:2px;\">RETOUR</button>" +
     "</div>";
   document.getElementById("quiz-progress").textContent = "Termine !";
+  saveQuizScore(quizCurrent.name, quizScore, total);
   document.getElementById("quiz-score-display").textContent = "Score final: " + quizScore + "/" + total;
 }
 </script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAA27562qKVSDsUrUp48ROCk7K3UmgUoBE",
+  authDomain: "tak-tek-2026.firebaseapp.com",
+  projectId: "tak-tek-2026",
+  storageBucket: "tak-tek-2026.firebasestorage.app",
+  messagingSenderId: "825987706018",
+  appId: "1:825987706018:web:912937a3d5a133d979bbfb"
+};
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// Charger profil
+var savedProfile = localStorage.getItem('tak-tek-profile');
+if (savedProfile) {
+  window.userProfile = JSON.parse(savedProfile);
+} else {
+  window.userProfile = null;
+}
+window.saveProfile = async function(name, club, flag) {
+  var profile = { name: name, club: club, flag: flag, createdAt: new Date().toISOString() };
+  localStorage.setItem('tak-tek-profile', JSON.stringify(profile));
+  window.userProfile = profile;
+  await db.collection('users').doc(name).set(profile);
+  document.getElementById('profile-display').innerHTML = flag + ' <b>' + name + '</b> · ' + club;
+  document.getElementById('profile-modal').style.display = 'none';
+}
+window.saveQuizScore = async function(playerName, score, total) {
+  if (!window.userProfile) {
+    document.getElementById('profile-modal').style.display = 'flex';
+    return;
+  }
+  var pct = Math.round((score/total)*100);
+  await db.collection('scores').add({
+    user: window.userProfile.name,
+    flag: window.userProfile.flag,
+    club: window.userProfile.club,
+    player: playerName,
+    score: score,
+    total: total,
+    pct: pct,
+    date: new Date().toISOString()
+  });
+}
+window.loadLeaderboard = async function() {
+  var q = db.collection('scores').orderBy('pct', 'desc').limit(10);
+  var snap = await q.get();
+  var html = '';
+  var rank = 1;
+  snap.forEach(function(d) {
+    var data = d.data();
+    var medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank + '.';
+    html += '<div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,0.05);border-radius:10px;margin-bottom:8px;">' +
+      '<div style="font-size:20px;width:32px;">' + medal + '</div>' +
+      '<div style="flex:1;">' +
+        '<div style="color:#fff;font-weight:900;font-family:Barlow Condensed,sans-serif;font-size:18px;">' + data.flag + ' ' + data.user + '</div>' +
+        '<div style="color:#888;font-size:12px;">' + data.player + ' · ' + data.club + '</div>' +
+      '</div>' +
+      '<div style="color:#00C853;font-size:22px;font-weight:900;">' + data.pct + '%</div>' +
+    '</div>';
+    rank++;
+  });
+  document.getElementById('leaderboard-list').innerHTML = html || '<div style="color:#888;text-align:center;padding:20px;">Aucun score encore</div>';
+}
+</script>
+
+<!-- Modal Profil -->
+<div id="profile-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
+  <div style="background:#1a1a1a;border:2px solid #00C853;border-radius:20px;padding:40px;max-width:400px;width:90%;text-align:center;">
+    <div style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:32px;font-weight:900;margin-bottom:24px;">CREER MON PROFIL</div>
+    <input id="profile-name" type="text" placeholder="Ton nom/pseudo" style="width:100%;padding:12px;border-radius:10px;border:2px solid #00C853;background:#111;color:#fff;font-size:16px;margin-bottom:12px;box-sizing:border-box;">
+    <select id="profile-club" style="width:100%;padding:12px;border-radius:10px;border:2px solid #00C853;background:#111;color:#fff;font-size:16px;margin-bottom:12px;box-sizing:border-box;">
+      <option value="Esperance Tunis">Esperance Tunis</option>
+      <option value="Club Africain">Club Africain</option>
+      <option value="CS Sfaxien">CS Sfaxien</option>
+      <option value="Etoile du Sahel">Etoile du Sahel</option>
+      <option value="US Monastirienne">US Monastirienne</option>
+      <option value="Autre">Autre</option>
+    </select>
+    <select id="profile-flag" style="width:100%;padding:12px;border-radius:10px;border:2px solid #00C853;background:#111;color:#fff;font-size:16px;margin-bottom:20px;box-sizing:border-box;">
+      <option value="🇹🇳">🇹🇳 Tunisie</option>
+      <option value="🇩🇿">🇩🇿 Algerie</option>
+      <option value="🇲🇦">🇲🇦 Maroc</option>
+      <option value="🇫🇷">🇫🇷 France</option>
+      <option value="🌍">🌍 Autre</option>
+    </select>
+    <button onclick="saveProfile(document.getElementById('profile-name').value, document.getElementById('profile-club').value, document.getElementById('profile-flag').value)" style="background:#00C853;color:#000;font-size:18px;font-weight:900;padding:14px 40px;border:none;border-radius:12px;cursor:pointer;width:100%;">SAUVEGARDER</button>
+    <button onclick="document.getElementById('profile-modal').style.display='none'" style="background:transparent;color:#888;font-size:14px;padding:10px;border:none;cursor:pointer;margin-top:8px;">Annuler</button>
+  </div>
+</div>
+<!-- Page Leaderboard -->
+<div id="page-leaderboard" style="display:none;width:100%;min-height:100vh;background:linear-gradient(135deg,#0a0a1a,#0d1b2a);flex-direction:column;align-items:center;padding:40px 20px;box-sizing:border-box;">
+  <div style="width:100%;max-width:600px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="color:#00C853;font-size:11px;font-weight:700;letter-spacing:4px;margin-bottom:8px;">TAK TEK 2026</div>
+      <div style="font-family:Barlow Condensed,sans-serif;color:#FFD700;font-size:52px;font-weight:900;">LEADERBOARD</div>
+      <div style="color:#888;font-size:14px;margin-top:8px;">Les meilleurs scores du Quiz</div>
+    </div>
+    <div id="leaderboard-list" style="width:100%;"></div>
+    <button onclick="showPage('home')" style="margin-top:24px;background:transparent;border:2px solid #00C853;color:#00C853;font-size:16px;font-weight:900;padding:12px 32px;border-radius:12px;cursor:pointer;width:100%;">RETOUR</button>
+  </div>
+</div>
 </body>
 </html>
